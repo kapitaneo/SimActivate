@@ -109,6 +109,7 @@
     <Content Include="ActivationSim\Index.aspx" />
     <Content Include="ActivationSim\InventoryPartial.aspx" />
     <Content Include="ActivationSim\Plans.aspx" />
+    <Content Include="ActivationSim\Summary.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -209,6 +210,13 @@
     </Compile>
     <Compile Include="ActivationSim\Plans.aspx.designer.cs">
       <DependentUpon>Plans.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActivationSim\Summary.aspx.cs">
+      <DependentUpon>Summary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActivationSim\Summary.aspx.designer.cs">
+      <DependentUpon>Summary.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

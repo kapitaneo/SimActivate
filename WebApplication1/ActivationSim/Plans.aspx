@@ -19,17 +19,8 @@
     var btnChange = Model.Where(m => m.ControlTypeName == "btnChangeTitle").FirstOrDefault();
 }--%>
 
-<style type="text/css">
-    .plan {
-        display: none;
-    }
-
-    .thead {
-        background-color: #373A3C;
-        color: #f0f0f0;
-    }
-</style>
-    <link href="../CSS/tables-responsive.css" rel="stylesheet" type="text/css" />
+    
+<link href="../CSS/tables-responsive.css" rel="stylesheet" type="text/css" />
 
 <div class="container">
     <div class="row">
@@ -75,7 +66,7 @@
 
         </div>
         <div class="col-xs-6 col-md-6 button-container">
-            <a href="checkout" class="btn btn-primary pull-right" id="btnconfirmplan" onclick="return ConfirmPlan();">
+            <a href="#" class="btn btn-primary pull-right" id="btnconfirmplan" onclick="return ConfirmPlan();">
                 Confirm
             </a>
         </div>

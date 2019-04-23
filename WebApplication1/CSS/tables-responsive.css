@@ -1,4 +1,14 @@
 ﻿/* Plans.cshtml */
+
+.plan {
+    display: none;
+}
+
+.thead {
+    background-color: #373A3C;
+    color: #f0f0f0;
+}
+
 .mobile-show {
     display: none;
 }
