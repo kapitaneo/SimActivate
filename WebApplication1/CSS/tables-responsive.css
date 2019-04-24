@@ -162,6 +162,7 @@
         display: flex;
         position: relative;
         justify-content: space-between;
+        background-color: #3276B1;
     }
 
         .summary-table .customHeader .tr .th {
@@ -757,6 +758,11 @@
         justify-content: center;
         flex-direction: column;
         width: 50%;
+    }
+
+    .customHeader {
+        background-color: #3276B1;
+        color: white;
     }
 
     .summary-table .customHeader .plan-name, .summary-table .tbody .plan-name {

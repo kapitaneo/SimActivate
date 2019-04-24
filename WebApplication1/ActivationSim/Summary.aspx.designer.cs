@@ -13,6 +13,15 @@ namespace WebApplication1.ActivationSim {
     public partial class Summary {
         
         /// <summary>
+        /// achModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl achModal;
+        
+        /// <summary>
         /// errorMessage control.
         /// </summary>
         /// <remarks>
@@ -20,5 +29,14 @@ namespace WebApplication1.ActivationSim {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorMessage;
+        
+        /// <summary>
+        /// btnCheckOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnCheckOut;
     }
 }

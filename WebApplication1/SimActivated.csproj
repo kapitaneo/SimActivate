@@ -108,6 +108,7 @@
     <Content Include="About.aspx" />
     <Content Include="ActivationSim\Index.aspx" />
     <Content Include="ActivationSim\InventoryPartial.aspx" />
+    <Content Include="ActivationSim\PaymentOption.aspx" />
     <Content Include="ActivationSim\Plans.aspx" />
     <Content Include="ActivationSim\Summary.aspx" />
     <Content Include="Contact.aspx" />
@@ -203,6 +204,13 @@
     </Compile>
     <Compile Include="ActivationSim\InventoryPartial.aspx.designer.cs">
       <DependentUpon>InventoryPartial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActivationSim\PaymentOption.aspx.cs">
+      <DependentUpon>PaymentOption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActivationSim\PaymentOption.aspx.designer.cs">
+      <DependentUpon>PaymentOption.aspx</DependentUpon>
     </Compile>
     <Compile Include="ActivationSim\Plans.aspx.cs">
       <DependentUpon>Plans.aspx</DependentUpon>

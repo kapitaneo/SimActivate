@@ -29,7 +29,7 @@
 }--%>
 <link href="../CSS/tables-responsive.css" rel="stylesheet" />
 
-<div class="modal fade" id="achModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" style="display:none">
+<div runat="server" visible="false" class="modal fade" id="achModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -54,7 +54,7 @@
     <br />
     <div class="col-md-12 alert alert-danger text-center" id="dvMsg" style="display:none">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <span runat ="server" id="errorMessage"/>
+        <span runat="server" visible="false" id="errorMessage"/>
     </div>
     <div class="table-responsive">
         <div class="table table-striped summary-table">
@@ -83,46 +83,46 @@
                         <div class="mobile-show arrow-container order-@count"><a href="#" onclick="hideShowOrderDetails(@count)"><div class="arrow arrow-right"></div></a></div>
                         <div class="td serial"><%--@item.InventoryName--%></div>
                        <%-- @*<td>@item.CarrierName</td>*@--%>
-                        <div class="td plan-name">@item.PlanName</div>
-                        <div class="td plans mobile-hidden">$@item.Plans.ToString("0.00")</div>
-                        <div class="td spiff mobile-hidden" style="color:red">$@item.InstantSPIFF.ToString("0.00")</div>
-                        <div class="td residual mobile-hidden" style="color:red">@item.FirstMonthResidualAmount.ToString("0.00")</div>
-                        <div class="td discount mobile-hidden" style="color:red">@item.RefillDiscount.ToString("0.00")</div>
-                        <div class="td cost mobile-hidden">$@item.SIMCost.ToString("0.00")</div>
-                        <div class="td funding mobile-hidden">$@item.PaymentRequired.ToString("0.00")</div>
+                        <div class="td plan-name"><%--@item.PlanName--%></div>
+                        <div class="td plans mobile-hidden"><%--$@item.Plans.ToString("0.00")--%></div>
+                        <div class="td spiff mobile-hidden" style="color:red"><%--$@item.InstantSPIFF.ToString("0.00")--%></div>
+                        <div class="td residual mobile-hidden" style="color:red"><%--@item.FirstMonthResidualAmount.ToString("0.00")--%></div>
+                        <div class="td discount mobile-hidden" style="color:red"><%--@item.RefillDiscount.ToString("0.00")--%></div>
+                        <div class="td cost mobile-hidden"><%--$@item.SIMCost.ToString("0.00")--%></div>
+                        <div class="td funding mobile-hidden"><%--$@item.PaymentRequired.ToString("0.00")--%></div>
                     </div>
-                    <div id="orderListDetail-@count" class="orderlist-mobile-details mobile-show">
-                        <div class="td plans"><label>Plans :</label><span>$@item.Plans.ToString("0.00")</span></div>
-                        <div class="td spiff"><label>Instant SPIFF :</label><span>$@item.InstantSPIFF.ToString("0.00")</span></div>
-                        <div class="td residual"><label>First Month Residual (%) :</label><span>@item.FirstMonthResidualAmount.ToString("0.00")</span></div>
-                        <div class="td discount"><label>Refill Discount (%) :</label><span>@item.RefillDiscount.ToString("0.00")</span></div>
-                        <div class="td cost"><label>SIM Cost :</label><span>$@item.SIMCost.ToString("0.00")</span></div>
+<%--                    <div id="orderListDetail-@count" class="orderlist-mobile-details mobile-show">
+                        <div class="td plans"><label>Plans :</label><span><%--$@item.Plans.ToString("0.00")</span></div>
+                        <div class="td spiff"><label>Instant SPIFF :</label><span><%--$@item.InstantSPIFF.ToString("0.00")</span></div>
+                        <div class="td residual"><label>First Month Residual (%) :</label><span><%--@item.FirstMonthResidualAmount.ToString("0.00")</span></div>
+                        <div class="td discount"><label>Refill Discount (%) :</label><span><%--@item.RefillDiscount.ToString("0.00")/span></div>
+                        <div class="td cost"><label>SIM Cost :</label><span><%--$@item.SIMCost.ToString("0.00")</span></div>
                         <div class="td funding"><label>Funding Required :</label><span>$@item.PaymentRequired.ToString("0.00")</span></div>
                     </div>
-                }
+              }--%>
                 <div class="tr">
                     <div class="td total-text">Total</div>
-                    <div class="td total" style="font-weight:bold">$@(subTotal.ToString("0.00"))</div>
+                    <div class="td total" style="font-weight:bold"><%--$@(subTotal.ToString("0.00"))--%></div>
                 </div>
                 <div class="tr">
                     <div class="td quantity-text">Quantity of plan(s) being purchased:</div>
-                    <div class="td quantity">@count</div>
+                    <div class="td quantity"><%--@count--%></div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-8 summary-btn-container">
+        <div class="col-xs-12 summary-btn-container">
             <a runat="server" href="#" class="btn btn-primary summary-submit-btn left" onserverclick="ChangePlan_ServerClick">Change</a>
+            <a runat="server" href="#" class="btn btn-primary pull-right" id="btnCheckOut">Confirm</a><%--href="@Url.Action("paymentoption", "checkout")"--%>
         </div>
-        @using (Html.BeginForm("init", "checkout", new { isMobile = ViewBag.IsMobile }, FormMethod.Post, new { id = "checkout-form"}))
-        {
-            <input type="hidden" value="false" name="isForcedACHToPay" id="isForcedACHToPay"/>
+        <%--@using (Html.BeginForm("init", "checkout", new { isMobile = ViewBag.IsMobile }, FormMethod.Post, new { id = "checkout-form"}))
+        {--%>
+<%--            <input type="hidden" value="false" name="isForcedACHToPay" id="isForcedACHToPay"/>
             <div class="col-xs-4 summary-btn-container">
-<%--                @*<a href="@Url.Action("paymentoption", "checkout")" id="btnCheckOut" class="btn btn-primary pull-right">@(btnConfirmTitle != null ? btnConfirmTitle.ControlValue : "Check Out")</a>*@--%>
-                <input type="submit" value="@(btnConfirmTitle != null ? btnConfirmTitle.ControlValue : "Check Out")" class="btn btn-primary summary-submit-btn pull-right" />
-            </div>
-        }
+           
+               <%-- <input type="submit" value="Check Out" class="btn btn-primary summary-submit-btn pull-right" />
+            </div>--%>
     </div>
 </div>
 <script src="../Scripts/jquery-3.3.1.js"></script>
@@ -162,6 +162,8 @@
         $(".order-" + num).toggleClass("active");
     } 
 
-</script>
+  </script>
+
     </span>
+
 </asp:Content>
