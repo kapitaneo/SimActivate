@@ -10,7 +10,7 @@
 namespace WebApplication1.ActivationSim {
     
     
-    public partial class Rewiew {
+    public partial class Review {
         
         /// <summary>
         /// alreadyPaidDivId control.

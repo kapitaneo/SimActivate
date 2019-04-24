@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Rewiew.aspx.cs" Inherits="WebApplication1.ActivationSim.Rewiew" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Review.aspx.cs" Inherits="WebApplication1.ActivationSim.Review" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <%--    @model AC.Common.CommonView.OrderViewModel
 @{

@@ -110,7 +110,7 @@
     <Content Include="ActivationSim\InventoryPartial.aspx" />
     <Content Include="ActivationSim\PaymentOption.aspx" />
     <Content Include="ActivationSim\Plans.aspx" />
-    <Content Include="ActivationSim\Rewiew.aspx" />
+    <Content Include="ActivationSim\Review.aspx" />
     <Content Include="ActivationSim\Summary.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -223,12 +223,12 @@
     <Compile Include="ActivationSim\Plans.aspx.designer.cs">
       <DependentUpon>Plans.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ActivationSim\Rewiew.aspx.cs">
-      <DependentUpon>Rewiew.aspx</DependentUpon>
+    <Compile Include="ActivationSim\Review.aspx.cs">
+      <DependentUpon>Review.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ActivationSim\Rewiew.aspx.designer.cs">
-      <DependentUpon>Rewiew.aspx</DependentUpon>
+    <Compile Include="ActivationSim\Review.aspx.designer.cs">
+      <DependentUpon>Review.aspx</DependentUpon>
     </Compile>
     <Compile Include="ActivationSim\Summary.aspx.cs">
       <DependentUpon>Summary.aspx</DependentUpon>
