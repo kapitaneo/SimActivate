@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
    <link href="../CSS/ActivateFormStyle.css" rel="stylesheet" type="text/css" />
-    <script src="../Scripts/ActivationSimScripts/Home-Index.js" type="text/javascript"></script>
+   <script src="../Scripts/ActivationSimScripts/Home-Index.js" type="text/javascript"></script>
 
    <div class="row text-center dvService" runat="server" id="dvCarriers"> 
        <div class="col-md-4" style="margin-top: 20px;">

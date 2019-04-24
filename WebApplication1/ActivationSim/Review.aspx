@@ -1,17 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Review.aspx.cs" Inherits="WebApplication1.ActivationSim.Review" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<%--    @model AC.Common.CommonView.OrderViewModel
-@{
+<%--    @model AC.Common.CommonView.OrderViewModel--%>
+<%
     float subTotal = 0;
     int count = 0;
     float alreadyPaid = 0;
     float requiredFunding = 0;
 
-    ViewBag.Title = "Review Plans";
-    var pagecontrols = Model.PageControlList;
-}
-@if (Session["AlreadyPaid"] != null && Session["AlreadyPaid"] != "")
-{ alreadyPaid = Convert.ToSingle(Session["AlreadyPaid"]); }--%>
+    //ViewBag.Title = "Review Plans";
+    //var pagecontrols = Model.PageControlList;
+
+    if (Session["AlreadyPaid"] != null && Session["AlreadyPaid"] != "")
+    { alreadyPaid = Convert.ToSingle(Session["AlreadyPaid"]); } %>
 
 <link href="../CSS/tables-responsive.css" rel="stylesheet" />
 <div class="container summary">
