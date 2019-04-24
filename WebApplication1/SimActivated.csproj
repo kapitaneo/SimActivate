@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="ActivationSim\CardDetail.aspx" />
     <Content Include="ActivationSim\Index.aspx" />
     <Content Include="ActivationSim\InventoryPartial.aspx" />
     <Content Include="ActivationSim\PaymentOption.aspx" />
@@ -195,6 +196,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivationSim\CardDetail.aspx.cs">
+      <DependentUpon>CardDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActivationSim\CardDetail.aspx.designer.cs">
+      <DependentUpon>CardDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ActivationSim\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
