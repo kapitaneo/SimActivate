@@ -42,7 +42,7 @@
                     subTotal = subTotal + item.PaymentRequired;
                     count++;%>
                     <div class="tr">
-                        <div class="mobile-show arrow-container review-@count"><a href="#" onclick="hideShowReviewDetails(@count)"><div class="arrow arrow-right"></div></a></div>
+                        <div class="mobile-show arrow-container review-@count"><a href="#" onclick="hideShowReviewDetails(<%=count%>)"><div class="arrow arrow-right"></div></a></div>
                         <div class="td serial"><%=item.InventoryName%></div>
                         <div class="td plan-name"><%=item.PlanName%></div>
                         <div class="td plans mobile-hidden"><%=item.Plans.ToString("0.00")%></div>

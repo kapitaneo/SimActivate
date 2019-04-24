@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CardDetail.aspx.cs" Inherits="WebApplication1.ActivationSim.CardDetail" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <%--    @model AC.Common.CommonView.PaymentInfoModel--%>
 <%
     var pageCtrl = Model.PageControlModel;
-}%>
+
+%>
 
 
 <style>
@@ -15,47 +17,52 @@
     }
  
 </style>
-@using (Html.BeginForm("CardDetail", "checkout", new {IsMobile = ViewBag.IsMobile }, FormMethod.Post))
-{
+<%--@using (Html.BeginForm("CardDetail", "checkout", new {IsMobile = ViewBag.IsMobile }, FormMethod.Post))
+{--%>
 
     <div class="container">
-        <h3 style="color:#3BA7D1">  @(pageCtrl.Where(i => i.ControlTypeName == "lblCREDITCARDDETAILS").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCREDITCARDDETAILS").FirstOrDefault().ControlValue : "RETAILER CREDIT CARD DETAILS")</h3>
+        <h3 style="color:#3BA7D1"><%= (pageCtrl.Where(i => i.ControlTypeName == "lblCREDITCARDDETAILS").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCREDITCARDDETAILS").FirstOrDefault().ControlValue : "RETAILER CREDIT CARD DETAILS") %></h3>
         <br />
-        @if (TempData["msg"] != null && TempData["msg"] != "")
-        {
+        <% if (TempData != null && TempData != "")
+        {%>
             <div class="col-md-12 alert alert-warning" id="dvMsg">
                 <a href="#" class="close" onclick="hide();" aria-label="close">&times;</a>
-                <center>@TempData["msg"]</center>
+                <center>TempData["msg"]</center>
             </div>
-        }
-        @if (!Model.IsCompanyVaultList)
-        {
+        <%}
+        if (!Model.IsCompanyVaultList)
+        {%>
             <div class="row BottomSpace">
                 <div class="col-xs-12 col-md-3"> </div>
-                <div class="col-xs-12 col-md-4">@Html.CheckBoxFor(m => m.cbkUserCardOnFile) @(pageCtrl.Where(i => i.ControlTypeName == "cbkUserCardOnFileTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "cbkUserCardOnFileTitle").FirstOrDefault().ControlValue : "Use Credit Card on File") </div>
+                <div class="col-xs-12 col-md-4">
+                    <asp:Label runat="server">
+                    <asp:CheckBox runat="server" Checked="<%# Convert.ToBoolean(Model.cbkUserCardOnFile)%>"/>
+                    <%= (Model.PageControlModel.Where(i => i.ControlTypeName == "cbkUserCardOnFileTitle").FirstOrDefault() != null ? Model.PageControlModel.Where(i => i.ControlTypeName == "cbkUserCardOnFileTitle").FirstOrDefault().ControlValue : "Use Credit Card on File")%>
+                </asp:Label>
+             </div>
             </div>
             <div id="dvCreditCardDetails">
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"  ><label id="lblCreditCardTypeTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardTypeTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardTypeTitle").FirstOrDefault().ControlValue : "Credit Card Type")</label></div>
-                    <div class="col-xs-12 col-md-5">
-                        @Html.DropDownListFor(m => m.CreditCardTypeId, new SelectList(ViewBag.CreditCardList, "AppTypeId", "Name"), "Select Card Type", new { @class = "form-control" })
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"  ><label id="lblCreditCardTypeTitle">
+                        <%=(pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardTypeTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardTypeTitle").FirstOrDefault().ControlValue : "Credit Card Type")%>
+          
                         <label id="CreditCardTypeId_error" class="error_message"> Credit Card Type is required.</label> 
                     </div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblFirstNameTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblFirstNameTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblFirstNameTitle").FirstOrDefault().ControlValue : "First Name")</label></div>
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblFirstNameTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblFirstNameTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblFirstNameTitle").FirstOrDefault().ControlValue : "First Name")%></label></div>
                     <div class="col-xs-12 col-md-5"> @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Enter Credit Holder First Name" }) <label id="FirstName_error" class="error_message"> First Name is required.</label>  </div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblLastNameTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblLastNameTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblLastNameTitle").FirstOrDefault().ControlValue : "Last Name")</label></div>
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblLastNameTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblLastNameTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblLastNameTitle").FirstOrDefault().ControlValue : "Last Name")%></label></div>
                     <div class="col-xs-12 col-md-5">@Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Enter Credit Holder Last Name" }) <label id="LastName_error" class="error_message"> Last Name is required.</label></div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCreditCardNumberTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardNumberTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardNumberTitle").FirstOrDefault().ControlValue : "Credit Card Number")</label></div>
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCreditCardNumberTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardNumberTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardNumberTitle").FirstOrDefault().ControlValue : "Credit Card Number")%></label></div>
                     <div class=" col-xs-12 col-md-5">@Html.TextBoxFor(m => m.CardNumber, new { @class = "form-control", placeholder = "Enter Credit Card Number", onkeypress = "return IsNumeric(event)" }) <label id="CardNumber_error" class="error_message">Card Number is required.</label> </div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblExpiryDateTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblExpiryDateTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblExpiryDateTitle").FirstOrDefault().ControlValue : "Exipry Date")</label></div>
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblExpiryDateTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblExpiryDateTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblExpiryDateTitle").FirstOrDefault().ControlValue : "Exipry Date")%></label></div>
                     <div class="col-xs-12 col-md-2">
                         @Html.DropDownListFor(m => m.ExpiryDateMonth, new SelectList(ViewBag.MonthList, "Text", "Value"), "Select Month", new { @class = "form-control" })
                         <label id="ExpiryDateMonth_error" class="error_message">Month is required.</label>
@@ -68,32 +75,32 @@
                 </div>
 
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCVVTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "CVV")</label></div>
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCVVTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "CVV")%></label></div>
                     <div class="col-xs-12 col-md-5">@Html.TextBoxFor(m => m.CvvNumber, new { @class = "form-control", placeholder = "Enter CVV", onkeypress = "return IsNumeric(event)" }) <label id="CvvNumber_error" class="error_message">CVV is required.</label></div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblAddressTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblAddressTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblAddressTitle").FirstOrDefault().ControlValue : "Address")</label></div>
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblAddressTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblAddressTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblAddressTitle").FirstOrDefault().ControlValue : "Address")%></label></div>
                     <div class="col-xs-12 col-md-5">@Html.TextBoxFor(m => m.Address1, new { @class = "form-control", placeholder = "Enter Address" }) <label id="Address_error" class="error_message">Address is required.</label></div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCityTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblCityTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCityTitle").FirstOrDefault().ControlValue : "City")</label></div>
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCityTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCityTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCityTitle").FirstOrDefault().ControlValue : "City")%></label></div>
                     <div class="col-xs-12 col-md-5">@Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Enter City" }) <label id="City_error" class="error_message">City is required.</label> </div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblStateTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblStateTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblStateTitle").FirstOrDefault().ControlValue : "State")</label></div>
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblStateTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblStateTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblStateTitle").FirstOrDefault().ControlValue : "State")%></label></div>
                     <div class="col-xs-12 col-md-5"> @Html.DropDownListFor(m => m.State, new SelectList(ViewBag.StateList, "Code", "Code"), "Select State", new { @class = "form-control", placeholder = "Select State" }) <label id="State_error" class="error_message">State is required.</label> </div>
                   
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblZipTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblZipTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblZipTitle").FirstOrDefault().ControlValue : "Zip Code")</label></div>
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblZipTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblZipTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblZipTitle").FirstOrDefault().ControlValue : "Zip Code")%></label></div>
                     <div class="col-xs-12 col-md-5">@Html.TextBoxFor(m => m.Zip, new { @class = "form-control", placeholder = "Enter Zip Code", onkeypress = "return IsNumeric(event)" })  <label id="Zip_error" class="error_message">Zip Code is required.</label></div>
                 </div>
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3"> </div>
-                    <div class="col-xs-12 col-md-6">@Html.CheckBoxFor(m => m.chbSaveCard)&nbsp;@(pageCtrl.Where(i => i.ControlTypeName == "chbSaveCardTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "chbSaveCardTitle").FirstOrDefault().ControlValue : "Save Payment Information for future usage ") </div>
+                    <div class="col-xs-12 col-md-6">@Html.CheckBoxFor(m => m.chbSaveCard)&nbsp;<%=(pageCtrl.Where(i => i.ControlTypeName == "chbSaveCardTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "chbSaveCardTitle").FirstOrDefault().ControlValue : "Save Payment Information for future usage ") %></div>
                 </div>
                 <div id="dvEmail" class="row BottomSpace" style="display:none">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCVVTitle">@(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitlea").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "Emai")</label></div>
+                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCVVTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitlea").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "Emai")%></label></div>
                     <div class="col-xs-12 col-md-5">@Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control", placeholder = "Email" }) </div>
                 </div>
                 <div class="row BottomSpace">
@@ -119,11 +126,11 @@
                     </div>
                 </div>
             </div>
-        }
+        <%}
         else
         {
             foreach (var item in Model.CompanyVaultList)
-            {
+            {%>
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3"> </div>
                     <div class="col-xs-12 col-md-6">
@@ -132,18 +139,18 @@
                         </label>
                     </div>
                 </div>
-            }
-            @Html.HiddenFor(m => m.HdnCustomer_Vault)
+            <%}%>
+            <%--@Html.HiddenFor(m => m.HdnCustomer_Vault)--%>
             <div class="row BottomSpace">
                 <div class="col-xs-12 col-md-3"> </div>
                 <div class="col-xs-12 col-md-6">
                     <input type="submit" class="btn btn-primary" onclick="return ValidateChk()" value="@(pageCtrl.Where(i => i.ControlTypeName == "btnPlaceOrderTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "btnPlaceOrderTitle").FirstOrDefault().ControlValue : "Place Order")" />
                 </div>
             </div>
-    @Html.HiddenFor(m => m.CardNumber);
-        }
+    <%--@Html.HiddenFor(m => m.CardNumber);--%>
+        <%}%>
     </div>
-}
+<%--}--%>
 
 
 <script type="text/javascript">
