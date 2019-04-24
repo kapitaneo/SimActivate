@@ -36,29 +36,24 @@
                 </div>
             </div>
             <div class="tbody">
-<%--                @foreach (var item in Model.OrderList)
+<%                foreach (var item in Model.OrderList)
                 {
-                    //float total = item.Plans - (item.InstantSPIFF + item.PinDiscountAmount);
                     requiredFunding = item.PaymentRequired;
                     subTotal = subTotal + item.PaymentRequired;
-                    count++;--%>
+                    count++;%>
                     <div class="tr">
                         <div class="mobile-show arrow-container review-@count"><a href="#" onclick="hideShowReviewDetails(@count)"><div class="arrow arrow-right"></div></a></div>
-                        <div class="td serial"><%--@item.InventoryName--%></div>
-                        <div class="td plan-name"><%--@item.PlanName--%></div>
-                        <div class="td plans mobile-hidden"><%--$@item.Plans.ToString("0.00")--%></div>
-                        <div class="td spiff mobile-hidden" style="color:red"><%--$@item.InstantSPIFF.ToString("0.00")--%></div>
-                        <div class="td residual mobile-hidden" style="color:red"><%--$@item.FirstMonthResidualAmount.ToString("0.00")--%></div>
-                        <div class="td discount mobile-hidden" style="color:red"><%--$@item.RefillDiscount.ToString("0.00")--%></div>
-                        <div class="td cost mobile-hidden"><%--$@item.SIMCost.ToString("0.00")--%></div>
-                        <div class="td funding mobile-hidden"><%--$@item.PaymentRequired.ToString("0.00")--%></div>
+                        <div class="td serial"><%=item.InventoryName%></div>
+                        <div class="td plan-name"><%=item.PlanName%></div>
+                        <div class="td plans mobile-hidden"><%=item.Plans.ToString("0.00")%></div>
+                        <div class="td spiff mobile-hidden" style="color:red"><%=item.InstantSPIFF.ToString("0.00")%></div>
+                        <div class="td residual mobile-hidden" style="color:red"><%=item.FirstMonthResidualAmount.ToString("0.00")%></div>
+                        <div class="td discount mobile-hidden" style="color:red"><%=item.RefillDiscount.ToString("0.00")%></div>
+                        <div class="td cost mobile-hidden"><%= item.SIMCost.ToString("0.00")%></div>
+                        <div class="td funding mobile-hidden"><%= item.PaymentRequired.ToString("0.00")%></div>
                     </div>
+                <% }%>
             </div>
-          <%--  @{
-                float processingFee = Model.CreditCardProcessingFee * count;
-                float grassAmount = subTotal + processingFee;
-
-            }--%>
             <div class="tfoot">
                 <div class="tr">
                     <div class="td total-text"><span>Total</span></div>
