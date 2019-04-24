@@ -101,7 +101,8 @@
     </div>
     <a href="CardDetail" class="btn btn-primary review-checkout-btn" id="btnCheckOut">Check Out</a>
 </div>
-<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="../Scripts/jquery-3.3.1.js"></script>
+
 <script type="text/javascript">
     window.history.forward();
     $(document).ready(function () {
