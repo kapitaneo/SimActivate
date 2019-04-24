@@ -9,6 +9,7 @@ namespace WebApplication1.ActivationSim
 {
     public partial class Rewiew : System.Web.UI.Page
     {
+        protected int alreadyPaid = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
 
