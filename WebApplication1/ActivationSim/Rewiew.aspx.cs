@@ -7,14 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1.ActivationSim
 {
-    public partial class PaymentOption : System.Web.UI.Page
+    public partial class Rewiew : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void PayPalPayment_ServerClick(object sender, EventArgs e)
         {
 
         }

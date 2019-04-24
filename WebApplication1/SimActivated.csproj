@@ -110,6 +110,7 @@
     <Content Include="ActivationSim\InventoryPartial.aspx" />
     <Content Include="ActivationSim\PaymentOption.aspx" />
     <Content Include="ActivationSim\Plans.aspx" />
+    <Content Include="ActivationSim\Rewiew.aspx" />
     <Content Include="ActivationSim\Summary.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -154,6 +155,9 @@
     <Content Include="Images\Carriers\Spectrum_logo377.png" />
     <Content Include="Images\Carriers\Spectrum_logo930.png" />
     <Content Include="Images\Carriers\Verizon_logo710.png" />
+    <Content Include="Images\PaymentOptions\Pay2.png" />
+    <Content Include="Images\PaymentOptions\PayButton.png" />
+    <Content Include="Images\PaymentOptions\Paypal.png" />
     <Content Include="Scripts\ActivationSimScripts\Home-Index.js" />
     <Content Include="CSS\tables-responsive.css" />
     <Content Include="Scripts\bootstrap.js" />
@@ -218,6 +222,13 @@
     </Compile>
     <Compile Include="ActivationSim\Plans.aspx.designer.cs">
       <DependentUpon>Plans.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActivationSim\Rewiew.aspx.cs">
+      <DependentUpon>Rewiew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActivationSim\Rewiew.aspx.designer.cs">
+      <DependentUpon>Rewiew.aspx</DependentUpon>
     </Compile>
     <Compile Include="ActivationSim\Summary.aspx.cs">
       <DependentUpon>Summary.aspx</DependentUpon>
