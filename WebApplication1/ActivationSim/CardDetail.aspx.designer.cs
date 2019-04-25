@@ -40,6 +40,24 @@ namespace WebApplication1.ActivationSim {
         protected global::System.Web.UI.WebControls.TextBox FirstNameTxt;
         
         /// <summary>
+        /// LastNameTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LastNameTxt;
+        
+        /// <summary>
+        /// CardNumberTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CardNumberTxt;
+        
+        /// <summary>
         /// MonthListDDL control.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,33 @@ namespace WebApplication1.ActivationSim {
         protected global::System.Web.UI.WebControls.DropDownList YearListDDL;
         
         /// <summary>
+        /// CvvNumberTXT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CvvNumberTXT;
+        
+        /// <summary>
+        /// Address1Txt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Address1Txt;
+        
+        /// <summary>
+        /// CityTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CityTxt;
+        
+        /// <summary>
         /// StateListDDL control.
         /// </summary>
         /// <remarks>
@@ -67,6 +112,15 @@ namespace WebApplication1.ActivationSim {
         protected global::System.Web.UI.WebControls.DropDownList StateListDDL;
         
         /// <summary>
+        /// ZipTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ZipTxt;
+        
+        /// <summary>
         /// chbSaveCard control.
         /// </summary>
         /// <remarks>
@@ -74,5 +128,32 @@ namespace WebApplication1.ActivationSim {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chbSaveCard;
+        
+        /// <summary>
+        /// CompanyEmailTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CompanyEmailTxt;
+        
+        /// <summary>
+        /// EmailTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EmailTxt;
+        
+        /// <summary>
+        /// PasswordTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PasswordTxt;
     }
 }

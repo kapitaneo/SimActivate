@@ -17,8 +17,6 @@
     }
  
 </style>
-<%--@using (Html.BeginForm("CardDetail", "checkout", new {IsMobile = ViewBag.IsMobile }, FormMethod.Post))
-{--%>
 
     <div class="container">
         <h3 style="color:#3BA7D1"><%= (pageCtrl.Where(i => i.ControlTypeName == "lblCREDITCARDDETAILS").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCREDITCARDDETAILS").FirstOrDefault().ControlValue : "RETAILER CREDIT CARD DETAILS") %></h3>
@@ -36,7 +34,7 @@
                 <div class="col-xs-12 col-md-3"> </div>
                 <div class="col-xs-12 col-md-4">
                     <Label>
-                    <asp:CheckBox ID="cbkUserCardOnFile" runat="server" Checked="<%# Convert.ToBoolean(Model.cbkUserCardOnFile)%>"/>
+                    <asp:CheckBox ID="cbkUserCardOnFile" ClientIDMode="Static" runat="server" Checked="<%# Convert.ToBoolean(Model.cbkUserCardOnFile)%>"/>
                     <%= (Model.PageControlModel.Where(i => i.ControlTypeName == "cbkUserCardOnFileTitle").FirstOrDefault() != null ? Model.PageControlModel.Where(i => i.ControlTypeName == "cbkUserCardOnFileTitle").FirstOrDefault().ControlValue : "Use Credit Card on File")%>
                 </Label>
              </div>
@@ -44,41 +42,45 @@
             <div id="dvCreditCardDetails">
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3 text-right"><label id="lblCreditCardTypeTitle">
-                        <%=(pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardTypeTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardTypeTitle").FirstOrDefault().ControlValue : "Credit Card Type")%>
-                        <asp:DropDownList runat="server" CssClass="form-control" ID="CreditCardDDLId" ></asp:DropDownList>
+                        <%=(pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardTypeTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardTypeTitle").FirstOrDefault().ControlValue : "Credit Card Type")%></label></div>
+                        <div class="col-xs-12 col-md-5">
+                        <asp:DropDownList runat="server" CssClass="form-control" ClientIDMode="Static" ID="CreditCardDDLId">
+                            <asp:ListItem Value="">Select Card Type</asp:ListItem>
+                        </asp:DropDownList>
                         <%--@Html.DropDownListFor(m => m.CreditCardTypeId, new SelectList(ViewBag.CreditCardList, "AppTypeId", "Name"), "Select Card Type", new { @class = "form-control" })--%>
-                        <label id="CreditCardTypeId_error" class="error_message"> Credit Card Type is required.</label> 
+                        <label id="CreditCardTypeId_error" class="error_message"> Credit Card Type is required.</label> </div>
                     </div>
-                </div>
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3 text-right"><label id="lblFirstNameTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblFirstNameTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblFirstNameTitle").FirstOrDefault().ControlValue : "First Name")%></label></div>
                     <div class="col-xs-12 col-md-5"> 
-                        <asp:TextBox runat="server" ID="FirstNameTxt" Text='<%# Model.FirstName %>'></asp:TextBox>
-                        <%--<type="text" value="<%= Model.FirstName %>" class="form-control" placeholder="Enter Credit Holder First Name" />--%>
-                        
+                        <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="FirstNameTxt" placeholder="Enter Credit Holder First Name"></asp:TextBox>                        
                         <label id="FirstName_error" class="error_message"> First Name is required.</label>  </div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblLastNameTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblLastNameTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblLastNameTitle").FirstOrDefault().ControlValue : "Last Name")%></label></div>
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblLastNameTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblLastNameTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblLastNameTitle").FirstOrDefault().ControlValue : "Last Name")%></label></div>
                     <div class="col-xs-12 col-md-5">
-                        <input type="text" value="<%= Model.LastName %>" class="form-control" placeholder="Enter Credit Holder Last Name" />
+                        <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="LastNameTxt" placeholder="Enter Credit Holder Last Name"></asp:TextBox>
                         <label id="LastName_error" class="error_message"> Last Name is required.</label></div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCreditCardNumberTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardNumberTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardNumberTitle").FirstOrDefault().ControlValue : "Credit Card Number")%></label></div>
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblCreditCardNumberTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardNumberTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardNumberTitle").FirstOrDefault().ControlValue : "Credit Card Number")%></label></div>
                     <div class=" col-xs-12 col-md-5">
-                        <input type="text" value="<%= Model.CardNumber %>" class="form-control" placeholder="Enter Credit Card Number" onkeypress="return IsNumeric(event)" />
+                        <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="CardNumberTxt" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);" placeholder="Enter Credit Card Number"></asp:TextBox>
                         <label id="CardNumber_error" class="error_message">Card Number is required.</label> </div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblExpiryDateTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblExpiryDateTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblExpiryDateTitle").FirstOrDefault().ControlValue : "Exipry Date")%></label></div>
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblExpiryDateTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblExpiryDateTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblExpiryDateTitle").FirstOrDefault().ControlValue : "Exipry Date")%></label></div>
                     <div class="col-xs-12 col-md-2">
-                        <asp:DropDownList runat="server" CssClass="form-control" ID="MonthListDDL" ></asp:DropDownList>
+                        <asp:DropDownList runat="server" CssClass="form-control" ID="MonthListDDL" >
+                            <asp:ListItem Value="">Select Month</asp:ListItem>
+                        </asp:DropDownList>
                         <%--@Html.DropDownListFor(m => m.ExpiryDateMonth, new SelectList(ViewBag.MonthList, "Text", "Value"), "Select Month", new { @class = "form-control" })--%>
                         <label id="ExpiryDateMonth_error" class="error_message">Month is required.</label>
                     </div>
                     <div class="col-xs-12 col-md-2">
-                        <asp:DropDownList runat="server" CssClass="form-control" ID="YearListDDL" ></asp:DropDownList>
+                        <asp:DropDownList runat="server" CssClass="form-control" ID="YearListDDL" >
+                            <asp:ListItem Value="">Select Year</asp:ListItem>
+                        </asp:DropDownList>
                         <%--@Html.DropDownListFor(m => m.ExpiryDateYear, new SelectList(ViewBag.YearList, "Value", "Text"), "Select Year", new { @class = "form-control" })--%>
                         <label id="ExpiryDateYear_error" class="error_message">Year is required.</label>
                     </div>
@@ -86,56 +88,58 @@
                 </div>
 
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCVVTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "CVV")%></label></div>
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblCVVTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "CVV")%></label></div>
                     <div class="col-xs-12 col-md-5">
-                        <input type="text" value="<%= Model.CvvNumber %>" class="form-control" placeholder="Enter CVV" onkeypress = "return IsNumeric(event)" />
+                        <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="CvvNumberTXT" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);" placeholder="Enter CVV"></asp:TextBox>
                         <label id="CvvNumber_error" class="error_message">CVV is required.</label></div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblAddressTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblAddressTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblAddressTitle").FirstOrDefault().ControlValue : "Address")%></label></div>
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblAddressTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblAddressTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblAddressTitle").FirstOrDefault().ControlValue : "Address")%></label></div>
                     <div class="col-xs-12 col-md-5">
-                        <input type="text" value="<%= Model.Address1 %>" class="form-control" placeholder="Enter Address" />
+                        <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="Address1Txt" placeholder="Enter Address"></asp:TextBox>
                         <label id="Address_error" class="error_message">Address is required.</label></div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCityTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCityTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCityTitle").FirstOrDefault().ControlValue : "City")%></label></div>
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblCityTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCityTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCityTitle").FirstOrDefault().ControlValue : "City")%></label></div>
                     <div class="col-xs-12 col-md-5">
-                        <input type="text" value="<%= Model.City %>" class="form-control" placeholder="Enter City" />
+                        <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="CityTxt" placeholder="Enter City"></asp:TextBox>
                         <label id="City_error" class="error_message">City is required.</label> </div>
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblStateTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblStateTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblStateTitle").FirstOrDefault().ControlValue : "State")%></label></div>
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblStateTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblStateTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblStateTitle").FirstOrDefault().ControlValue : "State")%></label></div>
                     <div class="col-xs-12 col-md-5">
-                        <asp:DropDownList runat="server" CssClass="form-control" ID="StateListDDL"></asp:DropDownList>
+                        <asp:DropDownList runat="server" CssClass="form-control" ID="StateListDDL">
+                            <asp:ListItem Value="">Select State</asp:ListItem>
+                        </asp:DropDownList>
                         <%--@Html.DropDownListFor(m => m.State, new SelectList(ViewBag.StateList, "Code", "Code"), "Select State", new { @class = "form-control", placeholder = "Select State" })--%> <label id="State_error" class="error_message">State is required.</label> </div>
                   
                 </div>
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblZipTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblZipTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblZipTitle").FirstOrDefault().ControlValue : "Zip Code")%></label></div>
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblZipTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblZipTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblZipTitle").FirstOrDefault().ControlValue : "Zip Code")%></label></div>
                     <div class="col-xs-12 col-md-5">
-                        <input type="text" value="<%= Model.Zip %>" class="form-control" placeholder="Enter Zip Code" onkeypress = "return IsNumeric(event)" />
+                        <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="ZipTxt" placeholder="Enter Zip Code" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                         <label id="Zip_error" class="error_message">Zip Code is required.</label></div>
                 </div>
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3"> </div>
                     <div class="col-xs-12 col-md-6">
                         <Label>
-                          <asp:CheckBox ID="chbSaveCard" runat="server" Checked="<%# Convert.ToBoolean(Model.chbSaveCard)%>"/>
+                          <asp:CheckBox ID="chbSaveCard" ClientIDMode="Static" runat="server" Checked="<%# Convert.ToBoolean(Model.chbSaveCard)%>"/>
                           <%= (Model.PageControlModel.Where(i => i.ControlTypeName == "chbSaveCardTitle").FirstOrDefault() != null ? Model.PageControlModel.Where(i => i.ControlTypeName == "chbSaveCardTitle").FirstOrDefault().ControlValue : "Save Payment Information for future usage")%>
                        </Label>
 
                     </div>
                 </div>
                 <div id="dvEmail" class="row BottomSpace" style="display:none">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblCVVTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitlea").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "Emai")%></label></div>
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblCVVTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitlea").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "Emai")%></label></div>
                     <div class="col-xs-12 col-md-5">
-                        <input type="text" value="<%= Model.CompanyEmail %>" class="form-control" placeholder="Email" />
+                        <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="CompanyEmailTxt" placeholder="Email"></asp:TextBox>
                     </div>
                 </div>
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3"> </div>
                     <div class="col-xs-12 col-md-6">
-                        <asp:Button runat="server" class="btn btn-primary" OnClientClick="return Validation()" OnClick="Unnamed_Click" Text="sd"/>
+                        <asp:Button runat="server" class="btn btn-primary" OnClick="Unnamed_Click" Text="Place Order"/>
                     </div>
                 </div>
             </div>
@@ -143,13 +147,13 @@
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3 text-right"><label id="lblCVVTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitlea").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "Email")%></label></div>
                     <div class="col-xs-12 col-md-5">
-                        <input type="text" value="<%= Model.Email %>" class="form-control" placeholder="Email" />
+                        <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="EmailTxt" placeholder="Email"></asp:TextBox>
                     </div>
                 </div>
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3 text-right"><label id="lblAddressTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblAddressTitlea").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblAddressTitle").FirstOrDefault().ControlValue : "Password")%></label></div>
                     <div class="col-xs-12 col-md-5">
-                        <input runat="server" type="password" value="<%= Model.Password %>" class="form-control" placeholder="Password" />
+                        <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="PasswordTxt" TextMode="Password" placeholder="Password"></asp:TextBox>
                     </div>
                 </div>
                 <div class="row BottomSpace">
@@ -185,7 +189,6 @@
         <input type="hidden" value="<%= Model.CardNumber%>" />
         <%}%>
     </div>
-<%--}--%>
 
 
 <script type="text/javascript">
@@ -193,7 +196,7 @@
     $(document).ready(function () {
         $('.error_message').css('display', 'none');
 
-        $("#MainContent_cbkUserCardOnFile").change(function () {
+        $("#cbkUserCardOnFile").change(function () {
             if (this.checked) {
                 $("#dvVaultDetail").show();
                 $("#dvCreditCardDetails").hide();
@@ -205,7 +208,7 @@
         });
 
 
-        $("#MainContent_chbSaveCard").change(function () {
+        $("#chbSaveCard").change(function () {
             if (this.checked) {
                 $("#dvEmail").show();
             }
@@ -232,133 +235,6 @@
             $("#dvCreditCardDetails").show();
         }
     });
-
-
-
-
-    function Validation() {
-        var IsValid = true;
-        if ($("#CreditCardTypeId").val() == "") {
-            $("#CreditCardTypeId").css('border-color', 'red');
-            $("#CreditCardTypeId_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#CreditCardTypeId").css('border-color', '');
-            $("#CreditCardTypeId_error").css('display', 'none');
-        }
-
-        if ($("#FirstName").val().trim() == "") {
-            $("#FirstName").css('border-color', 'red');
-            $("#FirstName_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#FirstName").css('border-color', '');
-            $("#FirstName_error").css('display', 'none');
-        }
-
-        if ($("#LastName").val().trim() == "") {
-            $("#LastName").css('border-color', 'red');
-            $("#LastName_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#LastName").css('border-color', '');
-            $("#LastName_error").css('display', 'none');
-        }
-
-        if ($("#CardNumber").val().trim() == "") {
-            $("#CardNumber").css('border-color', 'red');
-            $("#CardNumber_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#CardNumber").css('border-color', '');
-            $("#CardNumber_error").css('display', 'none');
-        }
-
-        if ($("#ExpiryDateMonth").val().trim() == "") {
-            $("#ExpiryDateMonth").css('border-color', 'red');
-            $("#ExpiryDateMonth_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#ExpiryDateMonth").css('border-color', '');
-            $("#ExpiryDateMonth_error").css('display', 'none');
-        }
-
-        if ($("#ExpiryDateYear").val().trim() == "") {
-            $("#ExpiryDateYear").css('border-color', 'red');
-            $("#ExpiryDateYear_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#ExpiryDateYear").css('border-color', '');
-            $("#ExpiryDateYear_error").css('display', 'none');
-        }
-
-        if ($("#CvvNumber").val().trim() == "") {
-            $("#CvvNumber").css('border-color', 'red');
-            $("#CvvNumber_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#CvvNumber").css('border-color', '');
-            $("#CvvNumber_error").css('display', 'none');
-        }
-
-        if ($("#Address1").val().trim() == "") {
-            $("#Address1").css('border-color', 'red');
-            $("#Address_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#Address1").css('border-color', '');
-            $("#Address_error").css('display', 'none');
-        }
-
-        if ($("#City").val().trim() == "") {
-            $("#City").css('border-color', 'red');
-            $("#City_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#City").css('border-color', '');
-            $("#City_error").css('display', 'none');
-        }
-
-        if ($("#State").val().trim() == "") {
-            $("#State").css('border-color', 'red');
-            $("#State_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#State").css('border-color', '');
-            $("#State_error").css('display', 'none');
-        }
-
-        if ($("#Zip").val().trim() == "") {
-            $("#Zip").css('border-color', 'red');
-            $("#Zip_error").css('display', 'block');
-            IsValid = false;
-        }
-        else {
-            $("#Zip").css('border-color', '');
-            $("#Zip_error").css('display', 'none');
-        }
-        var chkSaveCard = document.getElementById("chbSaveCard").checked;
-        if (chkSaveCard == true) {
-            if ($("#CompanyEmail").val().trim() == "") {
-                $("#CompanyEmail").css('border-color', 'red');
-                IsValid = false;
-            }
-            else {
-                $("#CompanyEmail").css('border-color', '');
-            }
-        }
-        return IsValid;
-    }
 
     function ValidateLogin() {
         var IsValid = true;
