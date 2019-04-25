@@ -19,12 +19,7 @@ namespace WebApplication1.ActivationSim
             Model = new PaymentInfoModel();
         }
 
-        protected void PlaceOrder()
-        {
-            Model.ToString();
-        }
-
-        protected void Unnamed_Click(object sender, EventArgs e)
+        protected void Submit_Click(object sender, EventArgs e)
         {
             Model.FirstName = FirstNameTxt.Text;
         }

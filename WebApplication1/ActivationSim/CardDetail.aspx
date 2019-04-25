@@ -139,7 +139,7 @@
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3"> </div>
                     <div class="col-xs-12 col-md-6">
-                        <asp:Button runat="server" class="btn btn-primary" OnClick="Unnamed_Click" Text="Place Order"/>
+                        <asp:Button runat="server" class="btn btn-primary" OnClick="Submit_Click" Text="Place Order"/>
                     </div>
                 </div>
             </div>
