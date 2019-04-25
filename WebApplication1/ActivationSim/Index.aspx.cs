@@ -64,8 +64,38 @@ namespace WebApplication1.ActivationSim
 
         protected void SubmitBtn_Click(object sender, EventArgs e)
         {
+            ActivateResultRpt.DataSource = CreateDataSource();
+            // Bind the data to the control.
+            ActivateResultRpt.DataBind();
+            ActivateResultRpt.Visible = true;
+        }
+
+        public ICollection CreateDataSource()
+        {
+
+
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add(new DataColumn("ActivateDate", typeof(String)));
+            dt.Columns.Add(new DataColumn("Carrier", typeof(String)));
+            dt.Columns.Add(new DataColumn("SIMIMEI", typeof(String)));
+            dt.Columns.Add(new DataColumn("PlanValue", typeof(String)));
+            dt.Columns.Add(new DataColumn("PlanName", typeof(String)));
+            dt.Columns.Add(new DataColumn("PhoneNumber", typeof(String)));
+
+            DataRow dr = dt.NewRow();
+            dr[0] = "White";
+            dr[1] = "Silver";
+            dr[2] = "DarkGray";
+            dr[3] = "Khaki";
+            dr[4] = "DarkKhaki";
+            dt.Rows.Add(dr);
+
+            DataView dv = new DataView(dt);
+            return dv;
 
         }
+
     }
 
     public class Selection
