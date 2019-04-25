@@ -36,7 +36,6 @@ namespace WebApplication1.ActivationSim
 
         }
 
-
         protected void DataBindings_ItemDataBound(object sender, DataListItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item | e.Item.ItemType == ListItemType.AlternatingItem)

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Review.aspx.cs" Inherits="WebApplication1.ActivationSim.Review" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<%--    @model AC.Common.CommonView.OrderViewModel--%>
+
 <%
     float subTotal = 0;
     int count = 0;
@@ -24,8 +24,7 @@
             <div class="customHeader">
                 <div class="tr">
                    <div class="mobile-show arrow-container"></div>
-                    <div class="th serial"><span id="lblSIMTitle"><%= (pagecontrols.Where(i => i.ControlTypeName == "lblSIMTitle").FirstOrDefault() != null ? pagecontrols.Where(i => i.ControlTypeName == "lblSIMTitle").FirstOrDefault().ControlValue : "SIM/IMEI") %></span></div>
-                  <%--  <%*<th><span id="lblCarrierTitle"><%(pagecontrols.Where(i => i.ControlTypeName == "lblCarrierTitle").FirstOrDefault() != null ? pagecontrols.Where(i => i.ControlTypeName == "lblCarrierTitle").FirstOrDefault().ControlValue : "Carrier")</span></th>*--%>
+                    <div class="th serial"><span id="lblSIMTitle"><%= (pagecontrols.Where(i => i.ControlTypeName == "lblSIMTitle").FirstOrDefault() != null ? pagecontrols.Where(i => i.ControlTypeName == "lblSIMTitle").FirstOrDefault().ControlValue : "SIM/IMEI") %></span></div>            
                     <div class="th plan-name"><span id="lblPlanNameTitle"><%= (pagecontrols.Where(i => i.ControlTypeName == "lblPlanNameTitle").FirstOrDefault() != null ? pagecontrols.Where(i => i.ControlTypeName == "lblPlanNameTitle").FirstOrDefault().ControlValue : "Plan Name") %></span></div>
                     <div class="th plans mobile-hidden"><span id="lblPlansTitle"><%=(pagecontrols.Where(i => i.ControlTypeName == "lblPlansTitle").FirstOrDefault() != null ? pagecontrols.Where(i => i.ControlTypeName == "lblPlansTitle").FirstOrDefault().ControlValue : "Plans")%></span></div>
                     <div class="th spiff mobile-hidden"><span id="lblInstantSpiffTitle"><%=(pagecontrols.Where(i => i.ControlTypeName == "lblInstantSpiffTitle").FirstOrDefault() != null ? pagecontrols.Where(i => i.ControlTypeName == "lblInstantSpiffTitle").FirstOrDefault().ControlValue : "Instant SPIFF")%></span></div>
@@ -36,23 +35,21 @@
                 </div>
             </div>
             <div class="tbody">
-<%                foreach (var item in Model.OrderList)
-                {
-                    requiredFunding = item.PaymentRequired;
-                    subTotal = subTotal + item.PaymentRequired;
-                    count++;%>
-                    <div class="tr">
-                        <div class="mobile-show arrow-container review-@count"><a href="#" onclick="hideShowReviewDetails(<%=count%>)"><div class="arrow arrow-right"></div></a></div>
-                        <div class="td serial"><%=item.InventoryName%></div>
-                        <div class="td plan-name"><%=item.PlanName%></div>
-                        <div class="td plans mobile-hidden"><%=item.Plans.ToString("0.00")%></div>
-                        <div class="td spiff mobile-hidden" style="color:red"><%=item.InstantSPIFF.ToString("0.00")%></div>
-                        <div class="td residual mobile-hidden" style="color:red"><%=item.FirstMonthResidualAmount.ToString("0.00")%></div>
-                        <div class="td discount mobile-hidden" style="color:red"><%=item.RefillDiscount.ToString("0.00")%></div>
-                        <div class="td cost mobile-hidden"><%= item.SIMCost.ToString("0.00")%></div>
-                        <div class="td funding mobile-hidden"><%= item.PaymentRequired.ToString("0.00")%></div>
+                  <asp:Repeater ID="OrderListRpt" runat="server">
+                      <ItemTemplate>
+                        <div class="tr">
+                        <div class="mobile-show arrow-container"><a href="#" onclick="hideShowReviewDetails(1)"><div class="arrow arrow-right"></div></a></div>
+                        <div class="td serial"><%#Eval("InventoryName")%></div>
+                        <div class="td plan-name"><%#Eval("PlanName")%></div>
+                        <div class="td plans mobile-hidden"><%#Eval("Plans")%></div>
+                        <div class="td spiff mobile-hidden" style="color:red"><%#Eval("InstantSPIFF")%></div>
+                        <div class="td residual mobile-hidden" style="color:red"><%#Eval("FirstMonthResidualAmount")%></div>
+                        <div class="td discount mobile-hidden" style="color:red"><%#Eval("RefillDiscount")%></div>
+                        <div class="td cost mobile-hidden"><%#Eval("SIMCost")%></div>
+                        <div class="td funding mobile-hidden"><%#Eval("PaymentRequired")%></div>
                     </div>
-                <% }%>
+                      </ItemTemplate>
+                  </asp:Repeater>
             </div>
             <div class="tfoot">
                 <div class="tr">
