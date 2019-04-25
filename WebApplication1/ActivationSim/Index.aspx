@@ -2,7 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
    <link href="../CSS/ActivateFormStyle.css" rel="stylesheet" type="text/css" />
-   <script src="../Scripts/ActivationSimScripts/Home-Index.js" type="text/javascript"></script>
 
    <div class="row text-center dvService" runat="server" id="dvCarriers"> 
        <div class="col-md-4" style="margin-top: 20px;">
@@ -25,19 +24,20 @@
          </div>
       </div>
     </div>
-    <div class="row col-md-6 col-md-offset-3 activated-sim-details" style="padding-left:40px;padding-right: 40px;display:none">
+    <asp:Repeater ID="ActivateResultRpt" Visible="false" runat="server">
+        <ItemTemplate>
+          <div class="row col-md-6 col-md-offset-3 activated-sim-details" style="padding-left:40px;padding-right: 40px;">
             <div class="panel-group" style="padding-bottom:20px">
                 <div class="panel panel-primary" id="pnlActivation">
                     <div class="panel-heading" id="headingActivate">
-                        <span id="spnTitle">SIM/IMEI is already activated.</span>
-                    </div>
-                    <div class="panel-body">
+            <asp:Label id="TitleLbl" runat="server">SIM/IMEI is already activated.</asp:Label>
+            <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-5 col-md-5 text-right">
                                 <b>Activated Date</b>
                             </div>
                             <div class="col-xs-7 col-md-7">
-                                <span id="activated-activateddate"></span>
+                                <span id="activated-activateddate"><%#Eval("ActivateDate") %></span>
                             </div>
                         </div>
                         <div class="row">
@@ -45,7 +45,7 @@
                                 <b>Carrier</b>
                             </div>
                             <div class="col-xs-7 col-md-7">
-                                <span id="activated-carrier"></span>
+                                <span id="activated-carrier"><%#Eval("Carrier") %></span>
                             </div>
                         </div>
                         <div class="row">
@@ -53,7 +53,7 @@
                                 <b>SIM / IMEI</b>
                             </div>
                             <div class="col-xs-7 col-md-7">
-                                <span id="activated-serialnumber"></span>
+                                <span id="activated-serialnumber"><%#Eval("SIMIMEI") %></span>
                             </div>
                         </div>
 
@@ -62,7 +62,7 @@
                                 <b>Plan Value</b>
                             </div>
                             <div class="col-xs-7 col-md-7">
-                                <span id="activated-planvalue"></span>
+                                <span id="activated-planvalue"><%#Eval("PlanValue") %></span>
                             </div>
                         </div>
                         <div class="row">
@@ -70,7 +70,7 @@
                                 <b>Plan Name</b>
                             </div>
                             <div class="col-xs-7 col-md-7">
-                                <span id="activated-planname"></span>
+                                <span id="activated-planname"><%#Eval("PlanName") %></span>
                             </div>
                         </div>
                         <div class="row">
@@ -78,15 +78,18 @@
                                 <b>Phone Number</b>
                             </div>
                             <div class="col-xs-7 col-md-7">
-                                <span id="activated-mobilenumber"></span>
+                                <span id="activated-mobilenumber"><%#Eval("PhoneNumber") %></span>
                             </div>
                         </div>
 
                     </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
+              </div>
+        </ItemTemplate>
+    </asp:Repeater>
+  
      <div class="container dvService">
             <div class="row">
                 <div class="col-sm-7 col-md-6" id="dvInventory">
