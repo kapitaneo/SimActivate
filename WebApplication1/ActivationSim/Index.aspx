@@ -6,9 +6,9 @@
    <div class="row text-center dvService" runat="server" id="dvCarriers"> 
        <div class="col-md-4" style="margin-top: 20px;">
            <div class="custom-panel">
-     <asp:DataList runat="server" ID="repeater" ItemStyle-CssClass="OrderHistory_RowSeparator" RepeatDirection="Horizontal" OnItemDataBound="DataList1_ItemDataBound">
+     <asp:DataList runat="server" ID="repeater" ItemStyle-CssClass="OrderHistory_RowSeparator" RepeatDirection="Horizontal" OnItemDataBound="DataBindings_ItemDataBound">
          <ItemTemplate>
-             <asp:Image ID="Image" CssClass="div-img-responsive" runat="server" ImageUrl='../Images/Carriers/H2O Wireless_logo627.jpg'/>
+             <asp:Image ID="Image" CssClass="div-img-responsive" runat="server"/>
              <asp:RadioButtonList ID="radios" runat="server" RepeatDirection="Vertical" ClientIDMode="Static"/>
          </ItemTemplate>
      </asp:DataList>

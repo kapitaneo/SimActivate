@@ -18,15 +18,15 @@ namespace WebApplication1.ActivationSim
             SelectionList list2 = new SelectionList();
 
             Selection selection = new Selection();
-            selection.Name = "abc";
-            selection.Choice = "1";
+            selection.Name.Add("cde");
+            selection.Name.Add("dawdqw2");
+            selection.img = "../Images/Carriers/H2O Wireless_logo627.jpg";
             list.Add(selection);
-            list2.Add(selection);
 
             selection = new Selection();
-            selection.Name = "cde";
-            selection.Choice = "2";
-            list.Add(selection);
+            selection.Name.Add("cde");
+            selection.Name.Add("dawdqw2");
+            selection.img = "../Images/Carriers/Lyca Mobile_logo489.png";
             list2.Add(selection);
 
             List<SelectionList> str = new List<SelectionList>();
@@ -38,26 +38,19 @@ namespace WebApplication1.ActivationSim
             //AddContentToDivById(list);
         }
 
-        //protected void AddContentToDivById(List<string> content)
-        //{
-        //    string sdasd = string.Empty;
 
-        //    foreach (var item in content)
-        //    {
-        //        sdasd = sdasd + "<div class=\"col-md-3\"><div class=\"custom-panel\" style=\"border-color:#e57014\"><div class=\"carrier-content\"><label class=\"carrier-radio\"><input type=\"radio\" name=\"carriers\"/>" + item + "</label>";
-        //    }
-        //    this.dvCarriers.InnerHtml = sdasd;
-        //}
-
-        protected void DataList1_ItemDataBound(object sender, DataListItemEventArgs e)
+        protected void DataBindings_ItemDataBound(object sender, DataListItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item | e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 var selections = (SelectionList)e.Item.DataItem;
                 var rb = (RadioButtonList)e.Item.FindControl("radios");
+                var img = (Image)e.Item.FindControl("Image");
                 foreach (Selection item in selections)
                 {
-                  rb.Items.Add(item.Name);
+                    img.ImageUrl = item.img;
+                    foreach (var item2 in item.Name)
+                        rb.Items.Add(item2);
                 }
             }
         }
@@ -96,19 +89,64 @@ namespace WebApplication1.ActivationSim
 
         }
 
+        ICollection CreateDataSource2()
+        {
+
+            // Create a table to store data for the DropDownList control.
+            DataTable dt = new DataTable();
+
+            // Define the columns of the table.
+            dt.Columns.Add(new DataColumn("ColorTextField", typeof(String)));
+            dt.Columns.Add(new DataColumn("ColorValueField", typeof(String)));
+
+            // Populate the table with sample values.
+            dt.Rows.Add(CreateRow("White", dt));
+            dt.Rows.Add(CreateRow("Silver", dt));
+            dt.Rows.Add(CreateRow("DarkGray", dt));
+            dt.Rows.Add(CreateRow("Khaki", dt));
+            dt.Rows.Add(CreateRow("DarkKhaki", dt));
+
+            // Create a DataView from the DataTable to act as the data source
+            // for the DropDownList control.
+            DataView dv = new DataView(dt);
+            return dv;
+
+        }
+
+        DataRow CreateRow(String Text, DataTable dt)
+        {
+
+            // Create a DataRow using the DataTable defined in the 
+            // CreateDataSource method.
+            DataRow dr = dt.NewRow();
+
+            // This DataRow contains the ColorTextField and ColorValueField 
+            // fields, as defined in the CreateDataSource method. Set the 
+            // fields with the appropriate value. Remember that column 0 
+            // is defined as ColorTextField, and column 1 is defined as 
+            // ColorValueField.
+            dr[0] = Text;
+
+            return dr;
+
+        }
     }
 
     public class Selection
     {
-        private string _name;
-        private string _choice;
+        private List<string> _name;
+        private string _img;
 
-        public string Choice
+        public Selection()
         {
-            get { return _choice; }
-            set { _choice = value; }
+            _name = new List<string>();
         }
-        public string Name
+        public string img
+        {
+            get { return _img; }
+            set { _img = value; }
+        }
+        public List<string> Name
         {
             get { return _name; }
             set { _name = value; }
