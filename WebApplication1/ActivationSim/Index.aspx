@@ -81,7 +81,6 @@
                                 <span id="activated-mobilenumber"><%#Eval("PhoneNumber") %></span>
                             </div>
                         </div>
-
                     </div>
                         </div>
                     </div>
