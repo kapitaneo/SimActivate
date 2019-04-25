@@ -43,16 +43,18 @@
             </div>
             <div id="dvCreditCardDetails">
                 <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"  ><label id="lblCreditCardTypeTitle">
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblCreditCardTypeTitle">
                         <%=(pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardTypeTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCreditCardTypeTitle").FirstOrDefault().ControlValue : "Credit Card Type")%>
-                        @Html.DropDownListFor(m => m.CreditCardTypeId, new SelectList(ViewBag.CreditCardList, "AppTypeId", "Name"), "Select Card Type", new { @class = "form-control" })
+                        <asp:DropDownList runat="server" CssClass="form-control" ID="CreditCardDDLId" ></asp:DropDownList>
+                        <%--@Html.DropDownListFor(m => m.CreditCardTypeId, new SelectList(ViewBag.CreditCardList, "AppTypeId", "Name"), "Select Card Type", new { @class = "form-control" })--%>
                         <label id="CreditCardTypeId_error" class="error_message"> Credit Card Type is required.</label> 
                     </div>
                 </div>
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3 text-right"><label id="lblFirstNameTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblFirstNameTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblFirstNameTitle").FirstOrDefault().ControlValue : "First Name")%></label></div>
                     <div class="col-xs-12 col-md-5"> 
-                        <input type="text" value="<%= Model.FirstName %>" class="form-control" placeholder="Enter Credit Holder First Name" />
+                        <asp:TextBox runat="server" ID="FirstNameTxt" Text='<%# Model.FirstName %>'></asp:TextBox>
+                        <%--<type="text" value="<%= Model.FirstName %>" class="form-control" placeholder="Enter Credit Holder First Name" />--%>
                         
                         <label id="FirstName_error" class="error_message"> First Name is required.</label>  </div>
                 </div>
@@ -71,11 +73,13 @@
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblExpiryDateTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblExpiryDateTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblExpiryDateTitle").FirstOrDefault().ControlValue : "Exipry Date")%></label></div>
                     <div class="col-xs-12 col-md-2">
-                        @Html.DropDownListFor(m => m.ExpiryDateMonth, new SelectList(ViewBag.MonthList, "Text", "Value"), "Select Month", new { @class = "form-control" })
+                        <asp:DropDownList runat="server" CssClass="form-control" ID="MonthListDDL" ></asp:DropDownList>
+                        <%--@Html.DropDownListFor(m => m.ExpiryDateMonth, new SelectList(ViewBag.MonthList, "Text", "Value"), "Select Month", new { @class = "form-control" })--%>
                         <label id="ExpiryDateMonth_error" class="error_message">Month is required.</label>
                     </div>
                     <div class="col-xs-12 col-md-2">
-                        @Html.DropDownListFor(m => m.ExpiryDateYear, new SelectList(ViewBag.YearList, "Value", "Text"), "Select Year", new { @class = "form-control" })
+                        <asp:DropDownList runat="server" CssClass="form-control" ID="YearListDDL" ></asp:DropDownList>
+                        <%--@Html.DropDownListFor(m => m.ExpiryDateYear, new SelectList(ViewBag.YearList, "Value", "Text"), "Select Year", new { @class = "form-control" })--%>
                         <label id="ExpiryDateYear_error" class="error_message">Year is required.</label>
                     </div>
 
@@ -101,8 +105,9 @@
                 </div>
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3 @(ViewBag.IsMobile ? "text-left" : "text-right")"><label id="lblStateTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblStateTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblStateTitle").FirstOrDefault().ControlValue : "State")%></label></div>
-                    <div class="col-xs-12 col-md-5"> 
-                        @Html.DropDownListFor(m => m.State, new SelectList(ViewBag.StateList, "Code", "Code"), "Select State", new { @class = "form-control", placeholder = "Select State" }) <label id="State_error" class="error_message">State is required.</label> </div>
+                    <div class="col-xs-12 col-md-5">
+                        <asp:DropDownList runat="server" CssClass="form-control" ID="StateListDDL"></asp:DropDownList>
+                        <%--@Html.DropDownListFor(m => m.State, new SelectList(ViewBag.StateList, "Code", "Code"), "Select State", new { @class = "form-control", placeholder = "Select State" })--%> <label id="State_error" class="error_message">State is required.</label> </div>
                   
                 </div>
                 <div class="row BottomSpace">
@@ -130,7 +135,7 @@
                 <div class="row BottomSpace">
                     <div class="col-xs-12 col-md-3"> </div>
                     <div class="col-xs-12 col-md-6">
-                        <input type="submit" class="btn btn-primary" onclick="return Validation()" value="<%=(pageCtrl.Where(i => i.ControlTypeName == "btnPlaceOrderTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "btnPlaceOrderTitle").FirstOrDefault().ControlValue : "Place Order")%>" />
+                        <asp:Button runat="server" class="btn btn-primary" OnClientClick="return Validation()" OnClick="Unnamed_Click" Text="sd"/>
                     </div>
                 </div>
             </div>

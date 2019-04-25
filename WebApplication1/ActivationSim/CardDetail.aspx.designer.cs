@@ -22,6 +22,51 @@ namespace WebApplication1.ActivationSim {
         protected global::System.Web.UI.WebControls.CheckBox cbkUserCardOnFile;
         
         /// <summary>
+        /// CreditCardDDLId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CreditCardDDLId;
+        
+        /// <summary>
+        /// FirstNameTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FirstNameTxt;
+        
+        /// <summary>
+        /// MonthListDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList MonthListDDL;
+        
+        /// <summary>
+        /// YearListDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList YearListDDL;
+        
+        /// <summary>
+        /// StateListDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList StateListDDL;
+        
+        /// <summary>
         /// chbSaveCard control.
         /// </summary>
         /// <remarks>
