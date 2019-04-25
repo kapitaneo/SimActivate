@@ -40,13 +40,13 @@ namespace WebApplication1.ActivationSim {
         protected global::System.Web.UI.WebControls.TextBox SIMTxt;
         
         /// <summary>
-        /// txtDeviceId control.
+        /// DeviceIdTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDeviceId;
+        protected global::System.Web.UI.WebControls.TextBox DeviceIdTxt;
         
         /// <summary>
         /// MobileNumberTxt control.

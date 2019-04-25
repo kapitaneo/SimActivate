@@ -91,22 +91,21 @@
             <div class="row">
                 <div class="col-sm-7 col-md-6" id="dvInventory">
                     <div class="col-md-12">
-
                         <div class="row form-group">
                             <asp:TextBox class="form-control" ID="SIMTxt" ClientIDMode="Static" runat="server" placeholder="Enter SIM Number"/>
                         </div>
 
-                        <div class="row form-group" style="display:none">
-                             <asp:TextBox class="form-control" ID="txtDeviceId" runat="server"/>
+                        <div class="row form-group">
+                             <asp:TextBox class="form-control" ID="DeviceIdTxt" ClientIDMode="Static" runat="server" Visible="false"/>
                         </div>
                     </div>
-                            <div class="col-md-12" style="display:none">
+                            <div class="col-md-12">
                                 <div class="row  form-group">
-                                    <asp:TextBox class="form-control" ID="MobileNumberTxt" ClientIDMode="Static" maxlength="10" runat="server"/>
+                                    <asp:TextBox class="form-control" ID="MobileNumberTxt" ClientIDMode="Static" maxlength="10" runat="server" Visible="false"/>
                                 </div>
                             </div>
                     <div class="col-md-10 row">
-                      <asp:Button runat="server" id="SubmitBtn" Text="Submit" class="btn btn-primary" />
+                      <asp:Button runat="server" id="SubmitBtn" Text="Submit" ClientIDMode="Static" OnClick="SubmitBtn_Click" class="btn btn-primary" />
                     </div>
                 </div>
             </div>

@@ -61,6 +61,11 @@ namespace WebApplication1.ActivationSim
                 }
             }
         }
+
+        protected void SubmitBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class Selection
