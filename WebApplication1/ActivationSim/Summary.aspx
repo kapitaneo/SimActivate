@@ -103,54 +103,7 @@
             <a runat="server" href="#" class="btn btn-primary summary-submit-btn left" onserverclick="ChangePlan_ServerClick">Change</a>
             <a runat="server" href="#" class="btn btn-primary pull-right" id="btnCheckOut">Confirm</a><%--href="@Url.Action("paymentoption", "checkout")"--%>
         </div>
-        <%--@using (Html.BeginForm("init", "checkout", new { isMobile = ViewBag.IsMobile }, FormMethod.Post, new { id = "checkout-form"}))
-        {--%>
-<%--            <input type="hidden" value="false" name="isForcedACHToPay" id="isForcedACHToPay"/>
-            <div class="col-xs-4 summary-btn-container">
-           
-               <%-- <input type="submit" value="Check Out" class="btn btn-primary summary-submit-btn pull-right" />
-            </div>--%>
     </div>
 </div>
-<script src="../Scripts/jquery-3.3.1.js"></script>
-
-<script type="text/javascript">
-
-    window.history.forward();
-
-    $(document).ready(function () { 
-
-        if ('@exceedsACHLimit' == 'True') {
-            $('#achModal').modal('show');
-        }
-        $(document).on('click', '.btn-ach-pay', function (e) {
-            e.preventDefault();
-            $('#isForcedACHToPay').val(true);
-
-            $('#checkout-form').submit();
-
-        });
-        CheckMessage();
-    });
-
-    function CheckMessage() {
-        var msg = '@TempData["msg"]';
-        if (msg != null && msg != "" && msg != undefined) {
-            $("#dvMsg").show();
-        }
-
-        setTimeout(function () {
-            $("#dvMsg").hide();
-        }, 3000);
-    }
-
-    function hideShowOrderDetails(num) {
-        $("#orderListDetail-" + num).toggleClass("active");
-        $(".order-" + num).toggleClass("active");
-    } 
-
-  </script>
-
-    </span>
 
 </asp:Content>
