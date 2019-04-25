@@ -31,13 +31,13 @@ namespace WebApplication1.ActivationSim {
         protected global::System.Web.UI.WebControls.DataList repeater;
         
         /// <summary>
-        /// txtSIM control.
+        /// SIMTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSIM;
+        protected global::System.Web.UI.WebControls.TextBox SIMTxt;
         
         /// <summary>
         /// txtDeviceId control.
@@ -49,21 +49,21 @@ namespace WebApplication1.ActivationSim {
         protected global::System.Web.UI.WebControls.TextBox txtDeviceId;
         
         /// <summary>
-        /// txtMobileNumber control.
+        /// MobileNumberTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMobileNumber;
+        protected global::System.Web.UI.WebControls.TextBox MobileNumberTxt;
         
         /// <summary>
-        /// btnSubmit control.
+        /// SubmitBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.Button SubmitBtn;
     }
 }

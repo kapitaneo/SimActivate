@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CardDetail.aspx.cs" Inherits="WebApplication1.ActivationSim.CardDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<%--    @model AC.Common.CommonView.PaymentInfoModel--%>
 <%
     var pageCtrl = Model.PageControlModel;
 

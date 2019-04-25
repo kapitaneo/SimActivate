@@ -93,7 +93,7 @@
                     <div class="col-md-12">
 
                         <div class="row form-group">
-                            <asp:TextBox class="form-control" ID="txtSIM" runat="server" placeholder="Enter SIM Number"/>
+                            <asp:TextBox class="form-control" ID="SIMTxt" ClientIDMode="Static" runat="server" placeholder="Enter SIM Number"/>
                         </div>
 
                         <div class="row form-group" style="display:none">
@@ -102,11 +102,11 @@
                     </div>
                             <div class="col-md-12" style="display:none">
                                 <div class="row  form-group">
-                                    <asp:TextBox class="form-control" ID="txtMobileNumber" maxlength="10" runat="server"/>
+                                    <asp:TextBox class="form-control" ID="MobileNumberTxt" ClientIDMode="Static" maxlength="10" runat="server"/>
                                 </div>
                             </div>
                     <div class="col-md-10 row">
-                      <asp:Button runat="server" id="btnSubmit" Text="Submit" class="btn btn-primary" />
+                      <asp:Button runat="server" id="SubmitBtn" Text="Submit" class="btn btn-primary" />
                     </div>
                 </div>
             </div>
