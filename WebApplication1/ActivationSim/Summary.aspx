@@ -62,7 +62,6 @@
                 <div class="tr">
                     <div class="mobile-show arrow-container"></div>
                     <div class="th serial">SIM/IMEI</div>
-                    <%--@*<th>@(lblCarrierTitle != null ? lblCarrierTitle.ControlValue : "Carrier")</th>*@--%>
                     <div class="th plan-name">Plan Name</div>
                     <div class="th plans mobile-hidden">Plans</div>
                     <div class="th spiff mobile-hidden" style="color:#f0f0f0">Instant SPIFF</div>
@@ -73,41 +72,29 @@
                 </div>
             </div>
             <div class="tbody">
-
-               <%-- @foreach (var item in Model.OrderList)
-                {
-                    //float total = item.Plans - (item.InstantSPIFF + item.PinDiscountAmount);
-                    subTotal = subTotal + item.PaymentRequired;
-                    count++;--%>
-                    <div class="tr">
+                <asp:Repeater runat="server">
+                    <ItemTemplate>
+                        <div class="tr">
                         <div class="mobile-show arrow-container order-@count"><a href="#" onclick="hideShowOrderDetails(@count)"><div class="arrow arrow-right"></div></a></div>
-                        <div class="td serial"><%--@item.InventoryName--%></div>
-                       <%-- @*<td>@item.CarrierName</td>*@--%>
-                        <div class="td plan-name"><%--@item.PlanName--%></div>
-                        <div class="td plans mobile-hidden"><%--$@item.Plans.ToString("0.00")--%></div>
-                        <div class="td spiff mobile-hidden" style="color:red"><%--$@item.InstantSPIFF.ToString("0.00")--%></div>
-                        <div class="td residual mobile-hidden" style="color:red"><%--@item.FirstMonthResidualAmount.ToString("0.00")--%></div>
-                        <div class="td discount mobile-hidden" style="color:red"><%--@item.RefillDiscount.ToString("0.00")--%></div>
-                        <div class="td cost mobile-hidden"><%--$@item.SIMCost.ToString("0.00")--%></div>
-                        <div class="td funding mobile-hidden"><%--$@item.PaymentRequired.ToString("0.00")--%></div>
+                        <div class="td serial"><%#Eval("InventoryName")%></div>
+                        <div class="td plan-name"><%#Eval("PlanName")%></div>
+                        <div class="td plans mobile-hidden"><%#Eval("Plans")%></div>
+                        <div class="td spiff mobile-hidden" style="color:red"><%#Eval("InstantSPIFF")%></div>
+                        <div class="td residual mobile-hidden" style="color:red"><%#Eval("FirstMonthResidualAmount")%></div>
+                        <div class="td discount mobile-hidden" style="color:red"><%#Eval("RefillDiscount")%></div>
+                        <div class="td cost mobile-hidden"><%#Eval("SIMCost")%></div>
+                        <div class="td funding mobile-hidden"><%#Eval("PaymentRequired")%></div>
                     </div>
-<%--                    <div id="orderListDetail-@count" class="orderlist-mobile-details mobile-show">
-                        <div class="td plans"><label>Plans :</label><span><%--$@item.Plans.ToString("0.00")</span></div>
-                        <div class="td spiff"><label>Instant SPIFF :</label><span><%--$@item.InstantSPIFF.ToString("0.00")</span></div>
-                        <div class="td residual"><label>First Month Residual (%) :</label><span><%--@item.FirstMonthResidualAmount.ToString("0.00")</span></div>
-                        <div class="td discount"><label>Refill Discount (%) :</label><span><%--@item.RefillDiscount.ToString("0.00")/span></div>
-                        <div class="td cost"><label>SIM Cost :</label><span><%--$@item.SIMCost.ToString("0.00")</span></div>
-                        <div class="td funding"><label>Funding Required :</label><span>$@item.PaymentRequired.ToString("0.00")</span></div>
+                    <div class="tr">
+                        <div class="td total-text">Total</div>
+                        <div class="td total" style="font-weight:bold"><%#Eval("Total")%></div>
                     </div>
-              }--%>
-                <div class="tr">
-                    <div class="td total-text">Total</div>
-                    <div class="td total" style="font-weight:bold"><%--$@(subTotal.ToString("0.00"))--%></div>
-                </div>
-                <div class="tr">
-                    <div class="td quantity-text">Quantity of plan(s) being purchased:</div>
-                    <div class="td quantity"><%--@count--%></div>
-                </div>
+                       <div class="tr">
+                        <div class="td quantity-text">Quantity of plan(s) being purchased:</div>
+                        <div class="td quantity"><%#Eval("Count")%></div>
+                    </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
     </div>

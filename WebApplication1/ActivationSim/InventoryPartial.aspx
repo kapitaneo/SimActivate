@@ -11,6 +11,7 @@
         }
     </script>
 
+    <asp:Repeater runat="server"></asp:Repeater>
 <div class="panel-group">
     <div class="panel panel-primary" id="pnlActivation">
         <div class="panel-heading" id="headingActivate">
@@ -256,8 +257,8 @@
                         <div class="col-xs-7 col-md-7">
                          <%--   @if (Model.IsFundingRequird == false)
                             {--%>
-                                <input type="button" class="btn btn-primary" onclick="getAreaCodeAndActivateSIM(@Model.ItemInventoryId,'@Model.SerialNumber','@IsPortIn','@Model.CarrierServiceGUID')" value="Activate" />
-                                <input type="button" class="btn btn-default" onclick="showService();" value="Back" />
+                                <input type="button" class="btn btn-primary" onclick="" value="Activate" />
+                                <input type="button" class="btn btn-default" onclick="" value="Back" />
                             <%--}
                             else
                             {
