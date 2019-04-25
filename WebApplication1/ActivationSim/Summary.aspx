@@ -101,7 +101,7 @@
     <div class="row">
         <div class="col-xs-12 summary-btn-container">
             <a runat="server" href="#" class="btn btn-primary summary-submit-btn left" onserverclick="ChangePlan_ServerClick">Change</a>
-            <a runat="server" href="#" class="btn btn-primary pull-right" id="btnCheckOut">Confirm</a><%--href="@Url.Action("paymentoption", "checkout")"--%>
+            <a runat="server" href="#" class="btn btn-primary pull-right" id="btnCheckOut">Confirm</a>
         </div>
     </div>
 </div>
