@@ -13,7 +13,6 @@ namespace WebApplication1.ActivationSim
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //List<string> list = new List<string>() { "1", "2", "3" };
             SelectionList list = new SelectionList();
             SelectionList list2 = new SelectionList();
 
@@ -35,7 +34,6 @@ namespace WebApplication1.ActivationSim
             repeater.DataSource = str;
             repeater.DataBind();
 
-            //AddContentToDivById(list);
         }
 
 
@@ -89,47 +87,6 @@ namespace WebApplication1.ActivationSim
 
         }
 
-        ICollection CreateDataSource2()
-        {
-
-            // Create a table to store data for the DropDownList control.
-            DataTable dt = new DataTable();
-
-            // Define the columns of the table.
-            dt.Columns.Add(new DataColumn("ColorTextField", typeof(String)));
-            dt.Columns.Add(new DataColumn("ColorValueField", typeof(String)));
-
-            // Populate the table with sample values.
-            dt.Rows.Add(CreateRow("White", dt));
-            dt.Rows.Add(CreateRow("Silver", dt));
-            dt.Rows.Add(CreateRow("DarkGray", dt));
-            dt.Rows.Add(CreateRow("Khaki", dt));
-            dt.Rows.Add(CreateRow("DarkKhaki", dt));
-
-            // Create a DataView from the DataTable to act as the data source
-            // for the DropDownList control.
-            DataView dv = new DataView(dt);
-            return dv;
-
-        }
-
-        DataRow CreateRow(String Text, DataTable dt)
-        {
-
-            // Create a DataRow using the DataTable defined in the 
-            // CreateDataSource method.
-            DataRow dr = dt.NewRow();
-
-            // This DataRow contains the ColorTextField and ColorValueField 
-            // fields, as defined in the CreateDataSource method. Set the 
-            // fields with the appropriate value. Remember that column 0 
-            // is defined as ColorTextField, and column 1 is defined as 
-            // ColorValueField.
-            dr[0] = Text;
-
-            return dr;
-
-        }
     }
 
     public class Selection
