@@ -21,7 +21,7 @@
                 "<div id=\"IsFundingRequird\" class=\"row\"><div class=\"col-xs-12 col-md-12 alert-danger\"><span>The Required Funding for this plan has increased to "+
                 Convert.ToDecimal(Math.Round(Convert.ToDouble(DataBinder.Eval(Container.DataItem , "NewFundingRequired")))> 0? Convert.ToDouble(DataBinder.Eval(Container.DataItem , "NewFundingRequired")) - Convert.ToDouble(DataBinder.Eval(Container.DataItem , "FundingRequired"))
                  : Convert.ToDouble(DataBinder.Eval(Container.DataItem , "NewFundingRequired"))).ToString("#.00")+
-                  "Please pay the difference amount before activating</span></div></div>":""
+                  " Please pay the difference amount before activating</span></div></div>":""
                 %>
                 <div class="row no-padding">
                     <div class="alert text-center" id="dvActivationMessage" style="display:none">
@@ -31,7 +31,8 @@
                 <div class="row">
                     <div class="col-xs-5 col-md-5 text-right">
                         <b>Carrier</b>
-                    </div><div class="col-xs-7 col-md-7"><%# DataBinder.Eval(Container.DataItem,("CarrierName"))%></div>
+                    </div>
+                    <div class="col-xs-7 col-md-7"><%# DataBinder.Eval(Container.DataItem,("CarrierName"))%></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-5 col-md-5 text-right">
