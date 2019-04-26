@@ -1,137 +1,83 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InventoryPartial.aspx.cs" Inherits="WebApplication1.ActivationSim.InventoryPartial" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-<div class="panel-group">
-    <asp:Repeater runat="server">
-        <ItemTemplate>
+
+<asp:Repeater runat="server" ID="Repeater" ItemType="WebApplication1.Models.FundedItemModel">
+   <ItemTemplate>
+     <div class="panel-group">
         <div class="panel panel-primary" id="pnlActivation">
             <div class="panel-heading" id="headingActivate">
            SIM / IMEI
-           <%if (Model.PlanId != null)
-            {%>
-                <span runat="server" id="spnTitle"></span>
-            <%}
-             if (Model.Status.ToLower() == "pending")
-            {%>
-                <span runat="server" id="spnTitlePartial"></span>
-           <%}
-            if(Model.Status.ToLower() == "activated")
-            {%>
-                <span id="spnTitle">The SIM number is activated successfully.</span>
-            <%}%>
+           <%# DataBinder.Eval(Container.DataItem,("PlanId")) != null? 
+               "<span>Prefunded</span>" : string.Empty%>
+           <%# DataBinder.Eval(Container.DataItem, "Status").ToString().ToLower() == "pending" ? 
+                   "<span>status is pending</span>" : 
+                   DataBinder.Eval(Container.DataItem,"Status").ToString().ToLower() == "activated"?
+                   "<span>The SIM number is activated successfully.</span>":string.Empty%>
         </div>
-        <div class="panel-body">
+            <div class="panel-body">
             <div class="col-md-12">
-                <%--@if (Model.IsFundingRequird == true)
-                {--%>
-                   <div runat="server" id="IsFundingRequird" class="row">
-                        <div class="col-xs-12 col-md-12 alert-danger">
-                            <span>The Required Funding for this plan has increased to<%-- $@(((decimal) Math.Round((Model.NewFundingRequired  > 0 ? Model.NewFundingRequired - @Model.FundingRequired : Model.NewFundingRequired),2)).ToString("#.00")).--%>  Please pay the difference amount before activating</span>
-                        </div>
-                    </div>
-                <%--}--%>
-
+                <%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem , "IsFundingRequird")) == true ?
+                "<div id=\"IsFundingRequird\" class=\"row\"><div class=\"col-xs-12 col-md-12 alert-danger\"><span>The Required Funding for this plan has increased to "+
+                Convert.ToDecimal(Math.Round(Convert.ToDouble(DataBinder.Eval(Container.DataItem , "NewFundingRequired")))> 0? Convert.ToDouble(DataBinder.Eval(Container.DataItem , "NewFundingRequired")) - Convert.ToDouble(DataBinder.Eval(Container.DataItem , "FundingRequired"))
+                 : Convert.ToDouble(DataBinder.Eval(Container.DataItem , "NewFundingRequired"))).ToString("#.00")+
+                  "Please pay the difference amount before activating</span></div></div>":""
+                %>
                 <div class="row no-padding">
                     <div class="alert text-center" id="dvActivationMessage" style="display:none">
-                        @*<a onclick="HideMsg();" class="close">&times;</a>*@
                         <span id="spnActivationMessage"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-5 col-md-5 text-right">
                         <b>Carrier</b>
-                    </div><div class="col-xs-7 col-md-7">
-                        <%--@Model.CarrierName--%>
-                    </div>
+                    </div><div class="col-xs-7 col-md-7"><%# DataBinder.Eval(Container.DataItem,("CarrierName"))%></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-5 col-md-5 text-right">
                         <b>SIM / IMEI</b>
                     </div>
-                    <div class="col-xs-7 col-md-7">
-                       <%-- @Model.SerialNumber--%>
-                    </div>
+                    <div class="col-xs-7 col-md-7"><%# DataBinder.Eval(Container.DataItem,("SerialNumber"))%></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-5 col-md-5 text-right">
                         <b>Plan Value</b>
                     </div>
-                    <div class="col-xs-7 col-md-7">
-                        <%--$@Convert.ToDecimal(Model.PlanValue)--%>
-                    </div>
+                    <div class="col-xs-7 col-md-7"><%# DataBinder.Eval(Container.DataItem,("PlanValue"))%></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-5 col-md-5 text-right">
                         <b>Plan Name</b>
                     </div>
-                    <div class="col-xs-7 col-md-7">
-                        <%--@Model.PlanName--%>
-                    </div>
+                    <div class="col-xs-7 col-md-7"><%# DataBinder.Eval(Container.DataItem,("PlanName"))%></div>
                 </div>
-               <%-- @if (!string.IsNullOrEmpty(Model.MobileNumber))
-                {--%>
-                    <div class="row">
-                        <div class="col-xs-5 col-md-5 text-right">
-                            <b>Mobile Number</b>
-                        </div>
-                        <div class="col-xs-7 col-md-7">
-                            <%--@Model.MobileNumber--%>
-                        </div>
-                    </div>
-              <%--  }
-                else
-                {
-                    <div class="row" id="dvMobileNumber" style="display:none">
-                        <div class="col-xs-5 col-md-5 text-right">
-                            <b>Mobile Number</b>
-                        </div>
-                        <div class="col-xs-7 col-md-7">
-                            <span id="mobileNumber"></span>
-                        </div>
-                    </div>
-                }--%>
+               <%# !string.IsNullOrEmpty(Convert.ToString(DataBinder.Eval(Container.DataItem,("MobileNumber")))) ? 
+                    "<div class=\"row\">"+
+                        "<div class=\"col-xs-5 col-md-5 text-right\">"+
+                            "<b>Mobile Number</b>"+
+                        "</div>"+
+                        "<div class=\"col-xs-7 col-md-7\">"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "MobileNumber")) + "</div></div>": "" %>
+                 <%# !string.IsNullOrEmpty(Convert.ToString(DataBinder.Eval(Container.DataItem,("ActivationDate")))) ?
+                    "<div class=\"row\">"+
+                        "<div class=\"col-xs-5 col-md-5 text-right\">"+
+                            "<b>Activated Date</b></div>"+
+                        "<div class=\"col-xs-7 col-md-7\">"+Convert.ToString(DataBinder.Eval(Container.DataItem, "ActivationDate"))+"</div></div>": 
+                        "<div class=\"row\" id=\"dvActivatedDate\" style=\"display:none\">"+
+                        "<div class=\"col-xs-5 col-md-5 text-right\"><b>Activated Date</b></div>"+
+                        "<div class=\"col-xs-7 col-md-7\"><span id=\"activatedDate\"></span></div></div>"
+                 %>
+             <%# DataBinder.Eval(Container.DataItem,"PlanId") != null ?
+                     Convert.ToBoolean(DataBinder.Eval(Container.DataItem,"IsFundingRequird")) ?
+                               "<div class=\"row form-group dvPortIn\">" +
+                                 "<div class=\"col-xs-5 col-md-5 text-right\">" +
+                                     "<b>Enter Zip Code</b>" +
+                                 "</div><div class=\"col-xs-7 col-md-7\">" +
+                                     "<div class=\"row col-md-7\">" +
+                                         "<input id=\"txtZip" + Convert.ToString(Eval("ItemInventoryId")) +
+                                         "class=\"form-control\" type=\"text\" onkeypress=\"return IsNumeric(event)\" maxlength=\"5\"/></div></div></div>" : "" : ""%>
 
-                <%--@if (!string.IsNullOrEmpty(Model.ActivationDate))
-                {--%>
-                    <div class="row">
-                        <div class="col-xs-5 col-md-5 text-right">
-                            <b>Activated Date</b>
-                        </div>
-                        <div class="col-xs-7 col-md-7">
-                           <%-- @Model.ActivationDate--%>
-                        </div>
-                    </div>
-               <%-- }
-                else
-                {
-                    <div class="row" id="dvActivatedDate" style="display:none">
-                        <div class="col-xs-5 col-md-5 text-right">
-                            <b>Activated Date</b>
-                        </div>
-                        <div class="col-xs-7 col-md-7">
-                            <span id="activatedDate"></span>
-                        </div>
-                    </div>
-                }--%>
-
-                <%--@if (Model.PlanId != null)
-                {
-                    if (Model.IsFundingRequird == false)
-                    {--%>
-                        <div class="row form-group dvPortIn">
-                            <div class="col-xs-5 col-md-5 text-right">
-                                <b>Enter Zip Code</b>
-                            </div>
-                            <div class="col-xs-7 col-md-7">
-                                <div class="row col-md-7">
-                                    <input id="txtZip<%---@Model.ItemInventoryId--%>" class="form-control" type="text" onkeypress="return IsNumeric(event)" maxlength="5" />
-                                </div>
-                            </div>
-                        </div>
-                   <%-- }
-                    if (Model.CarrierServiceName.ToLower().Contains("port-in") && !Model.IsLycaPortIn)
-                    {--%>
-                        <div runat="server" id="portIn" class="row dvPortIn">
+                 <asp:Panel ID="portIn" runat="server" ClientIDMode="Static" Visible="false">
+                        <div  class="row dvPortIn" >
                             <div class="col-xs-12 col-md-12">
                                 <div class="col-xs-6 col-md-6">
                                     <div class="form-group">
@@ -219,12 +165,9 @@
                                 </div>
                             </div>
                         </div>
-                   <%-- }
-                    else if (Model.CarrierServiceName.ToLower().Contains("port-in") && Model.IsLycaPortIn)
-                    {
-                        if (Model.IsFundingRequird == false)
-                        {--%>
-                            <div runat="server" id="portInIsLyca" class="row dvPortIn">
+                     </asp:Panel>
+                     <asp:Panel runat="server" ID="portInIsLyca" ClientIDMode="Static" Visible="false">
+                            <div class="row dvPortIn">
                                 <div class="row">
                                     <div class="col-xs-5 col-md-5 text-right">
                                         <label for="OSPAccountNum">Account Number</label>
@@ -240,47 +183,38 @@
                                     </div>
                                 </div>
                             </div>
-             <%--           } 
-                    }--%>
+                      </asp:Panel>
+                <input type="hidden" id="ItemInventoryId" value="<%#DataBinder.Eval(Container.DataItem, "ItemInventoryId") %>" />
                     <div class="row dvPortIn">
                         <div class="col-xs-5 col-md-5 text-right">
                         </div>
                         <div class="col-xs-7 col-md-7">
-                         <%--   @if (Model.IsFundingRequird == false)
-                            {--%>
-                                <input type="button" class="btn btn-primary" onclick="" value="Activate" />
-                                <input type="button" class="btn btn-default" onclick="" value="Back" />
-                            <%--}
-                            else
-                            {
-                                using (Html.BeginForm("FundingRequired", "checkout", FormMethod.Post))
-                                {
-                                    @Html.HiddenFor(m => m.ItemInventoryId)
-                                    @Html.HiddenFor(m => m.PlanPriceId)
-                                    @Html.HiddenFor(m => m.FundingRequired)--%>
-                                   <%-- <input type="submit" class="btn btn-primary" value="Pay Now" />
-                                    <input type="button" class="btn btn-default" onclick="showService();" value="Back" />--%>
-                           <%--     }
-                            }--%>
-
+                         <%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem,"IsFundingRequird")) == false ?
+                                "<input type=\"button\" class=\"btn btn-primary\" value=\"Activate\"/>"+
+                                "<input type=\"button\" class=\"btn btn-default\"  value=\"Back\"/>": "<input type=\"hidden\" id=\"ItemInventoryId\" value=\""+DataBinder.Eval(Container.DataItem, "ItemInventoryId")+"\" />"+
+                                "<input type=\"hidden\" id=\"PlanPriceId\" value=\""+DataBinder.Eval(Container.DataItem, "PlanPriceId")+"\" />"+
+                                "<input type=\"hidden\" id=\"FundingRequired\" value=\""+DataBinder.Eval(Container.DataItem, "FundingRequired")+"\" />"+
+                                "<input type=\"submit\" class=\"btn btn-primary\" value=\"Pay Now\"/>"+
+                                "<input type=\"button\" class=\"btn btn-default\" onclick=\"showService();\" value=\"Back\"/>"
+                         %>
+                        
                         </div>
                     </div>
                     <div id="dvActivate" style="display:none">
-                        <%--@if (Model.IsVersizonProvider)
-                        {--%>
+                        @if (Model.IsVersizonProvider)
+                        {
                             <div class="row">
                                 <div class="col-md-offset-5  col-xs-7 col-md-7">
                                     <input type="button" value="Refresh" class="btn btn-sm btn-primary" onclick="CheckStatus('@Model.Item')" />
                                 </div>
                             </div>
-                      <%--  }--%>
+                     }
                     </div>
-               <%-- }--%>
             </div>
         </div>
-    </div>
-            </ItemTemplate>
-    </asp:Repeater>
-</div>
+        </div>
+     </div>
+    </ItemTemplate>
+</asp:Repeater>
 
 </asp:Content>
