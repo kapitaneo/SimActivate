@@ -23,5 +23,10 @@ namespace WebApplication1.ActivationSim
         {
             Model.FirstName = FirstNameTxt.Text;
         }
+
+        protected void ValidateChk_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

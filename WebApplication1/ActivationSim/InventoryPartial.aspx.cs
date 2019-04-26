@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebApplication1.Models;
 
 namespace WebApplication1.ActivationSim
 {
@@ -13,5 +14,6 @@ namespace WebApplication1.ActivationSim
         //{
 
         //}
+        public FundedItemModel Model { get; set; }
     }
 }

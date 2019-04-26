@@ -164,111 +164,31 @@
             </div>
         <%}
         else
-        {
-            foreach (var item in Model.CompanyVaultList)
-            {%>
-                <div class="row BottomSpace">
-                    <div class="col-xs-12 col-md-3"> </div>
-                    <div class="col-xs-12 col-md-6">
-                        <label>
-                            <input type="radio" value="<%= item.VaultId%> name="companyVault">&nbsp;&nbsp;&nbsp; <%= item.CreditCardType%> &nbsp;&nbsp;&nbsp; <span id="VaultCardNumber" value="<%= item.Last4%>"><%= item.Last4%></span> 
-                        </label>
-                    </div>
-                </div>
-            <%}%>
-           <input type="hidden" value="<%= Model.HdnCustomer_Vault%>" />
+        {%>
+               <asp:Repeater ID="CompanyVaultListRpt" ClientIDMode="Static" runat="server">
+                   <ItemTemplate>
+                     <div class="row BottomSpace">
+                       <div class="col-xs-12 col-md-3"> </div>
+                        <div class="col-xs-12 col-md-6">
+                          <label>
+                              <asp:RadioButton name="companyVault" ID="VaultIdRb" ClientIDMode="Static" runat="server" Text="<%#Eval("VaultId")%>" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <span id="CreditCardTypeSpan"><%# Eval("Last4")%></span>
+                              <span id="VaultCardNumber"> <%#Eval("CreditCardType")%></span>
+                          </label>
+                        </div>
+                      </div>
+                    </ItemTemplate>
+                </asp:Repeater>
 
+              <input type="hidden" runat="server" value="<%= Model.HdnCustomer_Vault%>" />
             <div class="row BottomSpace">
                 <div class="col-xs-12 col-md-3"> </div>
                 <div class="col-xs-12 col-md-6">
-                    <input type="submit" class="btn btn-primary" onclick="return ValidateChk()" value="<%=(pageCtrl.Where(i => i.ControlTypeName == "btnPlaceOrderTitle").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "btnPlaceOrderTitle").FirstOrDefault().ControlValue : "Place Order")%>" />
+                    <asp:Button class="btn btn-primary" OnClick="ValidateChk_Click" Text="Place Order" runat="server" />
                 </div>
             </div>
 
-        <input type="hidden" value="<%= Model.CardNumber%>" />
+        <input type="hidden" runat="server" value="<%= Model.CardNumber%>" />
         <%}%>
     </div>
-
-
-<script type="text/javascript">
-    window.history.forward();
-    $(document).ready(function () {
-        $('.error_message').css('display', 'none');
-
-        $("#cbkUserCardOnFile").change(function () {
-            if (this.checked) {
-                $("#dvVaultDetail").show();
-                $("#dvCreditCardDetails").hide();
-            }
-            else {
-                $("#dvVaultDetail").hide();
-                $("#dvCreditCardDetails").show();
-            }
-        });
-
-
-        $("#chbSaveCard").change(function () {
-            if (this.checked) {
-                $("#dvEmail").show();
-            }
-            else {
-                $("#dvEmail").hide();
-            }
-        });
-
-        if ('@Model.chbSaveCard' == 'True') {
-            $("#dvEmail").show();
-        }
-        else {
-            $("#dvEmail").hide();
-        }
-
-
-        if ('@Model.cbkUserCardOnFile' == 'True') {
-            $("#dvVaultDetail").show();
-            $("#dvCreditCardDetails").hide();
-
-        }
-        else {
-            $("#dvVaultDetail").hide();
-            $("#dvCreditCardDetails").show();
-        }
-    });
-
-    function ValidateLogin() {
-        var IsValid = true;
-        if ($("#Email").val().trim() == "") {
-            $("#Email").css('border-color', 'red');
-            IsValid = false;
-        }
-        else {
-            $("#Email").css('border-color', '');
-        }
-
-        if ($("#Password").val().trim() == "") {
-            $("#Password").css('border-color', 'red');
-            IsValid = false;
-        }
-        else {
-            $("#Password").css('border-color', '');
-        }
-        return IsValid;
-    }
-
-    function ValidateChk() {
-        Loading();
-        var companyVaultId = $("input[name=companyVault]:checked").val();
-        var vaultCardnumber = $("#VaultCardNumber").html();
-        if (companyVaultId != undefined && vaultCardnumber != undefined) {
-            $("#HdnCustomer_Vault").val(companyVaultId);
-            $("#CardNumber").val(vaultCardnumber);
-            return true;
-        }
-        else {
-            StopLoading();
-            return false;
-        }
-    }
-
-</script>
 </asp:Content>

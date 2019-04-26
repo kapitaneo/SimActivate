@@ -272,7 +272,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CarrierModel.cs" />
     <Compile Include="Models\CompanyVaultModel.cs" />
+    <Compile Include="Models\FundedItemModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\PageControlModel.cs" />
     <Compile Include="Models\PaymentInfoModel.cs" />
