@@ -130,7 +130,7 @@
                     </div>
                 </div>
                 <div id="dvEmail" class="row BottomSpace" style="display:none">
-                    <div class="col-xs-12 col-md-3 text-right"><label id="lblCVVTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitlea").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "Emai")%></label></div>
+                    <div class="col-xs-12 col-md-3 text-right"><label id="lblCVVTitle"><%=(pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitlea").FirstOrDefault() != null ? pageCtrl.Where(i => i.ControlTypeName == "lblCVVTitle").FirstOrDefault().ControlValue : "Email")%></label></div>
                     <div class="col-xs-12 col-md-5">
                         <asp:TextBox runat="server" ClientIDMode="Static" CssClass="form-control" ID="CompanyEmailTxt" placeholder="Email"></asp:TextBox>
                     </div>
@@ -171,7 +171,7 @@
                        <div class="col-xs-12 col-md-3"> </div>
                         <div class="col-xs-12 col-md-6">
                           <label>
-                              <asp:RadioButton name="companyVault" ID="VaultIdRb" ClientIDMode="Static" runat="server" Text="<%#Eval("VaultId")%>" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <input type="radio" value="<%#Eval("VaultId")%>" name="companyVault">
                               <span id="CreditCardTypeSpan"><%# Eval("Last4")%></span>
                               <span id="VaultCardNumber"> <%#Eval("CreditCardType")%></span>
                           </label>
@@ -181,14 +181,223 @@
                 </asp:Repeater>
 
               <input type="hidden" runat="server" value="<%= Model.HdnCustomer_Vault%>" />
-            <div class="row BottomSpace">
-                <div class="col-xs-12 col-md-3"> </div>
-                <div class="col-xs-12 col-md-6">
-                    <asp:Button class="btn btn-primary" OnClick="ValidateChk_Click" Text="Place Order" runat="server" />
-                </div>
-            </div>
+              <div class="row BottomSpace">
+                  <div class="col-xs-12 col-md-3"> </div>
+                  <div class="col-xs-12 col-md-6">
+                      <asp:Button class="btn btn-primary" OnClick="ValidateChk_Click" Text="Place Order" runat="server" />
+                  </div>
+              </div>
 
         <input type="hidden" runat="server" value="<%= Model.CardNumber%>" />
         <%}%>
     </div>
+    <script type="text/javascript">
+        window.history.forward();
+        $(document).ready(function () {
+            $('.error_message').css('display', 'none');
+
+            $("#cbkUserCardOnFile").change(function () {
+                if (this.checked) {
+                    $("#dvVaultDetail").show();
+                    $("#dvCreditCardDetails").hide();
+                }
+                else {
+                    $("#dvVaultDetail").hide();
+                    $("#dvCreditCardDetails").show();
+                }
+            });
+
+
+            $("#chbSaveCard").change(function () {
+                if (this.checked) {
+                    $("#dvEmail").show();
+                }
+                else {
+                    $("#dvEmail").hide();
+                }
+            });
+
+            if ('@Model.chbSaveCard' == 'True') {
+                $("#dvEmail").show();
+            }
+            else {
+                $("#dvEmail").hide();
+            }
+
+
+            if ('@Model.cbkUserCardOnFile' == 'True') {
+                $("#dvVaultDetail").show();
+                $("#dvCreditCardDetails").hide();
+
+            }
+            else {
+                $("#dvVaultDetail").hide();
+                $("#dvCreditCardDetails").show();
+            }
+        });
+
+
+
+
+        function Validation() {
+            var IsValid = true;
+            if ($("#CreditCardTypeId").val() == "") {
+                $("#CreditCardTypeId").css('border-color', 'red');
+                $("#CreditCardTypeId_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#CreditCardTypeId").css('border-color', '');
+                $("#CreditCardTypeId_error").css('display', 'none');
+            }
+
+            if ($("#FirstName").val().trim() == "") {
+                $("#FirstName").css('border-color', 'red');
+                $("#FirstName_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#FirstName").css('border-color', '');
+                $("#FirstName_error").css('display', 'none');
+            }
+
+            if ($("#LastName").val().trim() == "") {
+                $("#LastName").css('border-color', 'red');
+                $("#LastName_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#LastName").css('border-color', '');
+                $("#LastName_error").css('display', 'none');
+            }
+
+            if ($("#CardNumber").val().trim() == "") {
+                $("#CardNumber").css('border-color', 'red');
+                $("#CardNumber_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#CardNumber").css('border-color', '');
+                $("#CardNumber_error").css('display', 'none');
+            }
+
+            if ($("#ExpiryDateMonth").val().trim() == "") {
+                $("#ExpiryDateMonth").css('border-color', 'red');
+                $("#ExpiryDateMonth_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#ExpiryDateMonth").css('border-color', '');
+                $("#ExpiryDateMonth_error").css('display', 'none');
+            }
+
+            if ($("#ExpiryDateYear").val().trim() == "") {
+                $("#ExpiryDateYear").css('border-color', 'red');
+                $("#ExpiryDateYear_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#ExpiryDateYear").css('border-color', '');
+                $("#ExpiryDateYear_error").css('display', 'none');
+            }
+
+            if ($("#CvvNumber").val().trim() == "") {
+                $("#CvvNumber").css('border-color', 'red');
+                $("#CvvNumber_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#CvvNumber").css('border-color', '');
+                $("#CvvNumber_error").css('display', 'none');
+            }
+
+            if ($("#Address1").val().trim() == "") {
+                $("#Address1").css('border-color', 'red');
+                $("#Address_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#Address1").css('border-color', '');
+                $("#Address_error").css('display', 'none');
+            }
+
+            if ($("#City").val().trim() == "") {
+                $("#City").css('border-color', 'red');
+                $("#City_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#City").css('border-color', '');
+                $("#City_error").css('display', 'none');
+            }
+
+            if ($("#State").val().trim() == "") {
+                $("#State").css('border-color', 'red');
+                $("#State_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#State").css('border-color', '');
+                $("#State_error").css('display', 'none');
+            }
+
+            if ($("#Zip").val().trim() == "") {
+                $("#Zip").css('border-color', 'red');
+                $("#Zip_error").css('display', 'block');
+                IsValid = false;
+            }
+            else {
+                $("#Zip").css('border-color', '');
+                $("#Zip_error").css('display', 'none');
+            }
+            var chkSaveCard = document.getElementById("chbSaveCard").checked;
+            if (chkSaveCard == true) {
+                if ($("#CompanyEmail").val().trim() == "") {
+                    $("#CompanyEmail").css('border-color', 'red');
+                    IsValid = false;
+                }
+                else {
+                    $("#CompanyEmail").css('border-color', '');
+                }
+            }
+            return IsValid;
+        }
+
+        function ValidateLogin() {
+            var IsValid = true;
+            if ($("#Email").val().trim() == "") {
+                $("#Email").css('border-color', 'red');
+                IsValid = false;
+            }
+            else {
+                $("#Email").css('border-color', '');
+            }
+
+            if ($("#Password").val().trim() == "") {
+                $("#Password").css('border-color', 'red');
+                IsValid = false;
+            }
+            else {
+                $("#Password").css('border-color', '');
+            }
+            return IsValid;
+        }
+
+        function ValidateChk() {
+            Loading();
+            var companyVaultId = $("input[name=companyVault]:checked").val();
+            var vaultCardnumber = $("#VaultCardNumber").html();
+            if (companyVaultId != undefined && vaultCardnumber != undefined) {
+                $("#HdnCustomer_Vault").val(companyVaultId);
+                $("#CardNumber").val(vaultCardnumber);
+                return true;
+            }
+            else {
+                StopLoading();
+                return false;
+            }
+        }
+
+</script>
 </asp:Content>
+
