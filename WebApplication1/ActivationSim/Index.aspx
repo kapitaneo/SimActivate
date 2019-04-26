@@ -3,13 +3,14 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
    <link href="../CSS/ActivateFormStyle.css" rel="stylesheet" type="text/css" />
 
+
    <div class="row text-center dvService" runat="server" id="dvCarriers"> 
        <div class="col-md-4" style="margin-top: 20px;">
            <div class="custom-panel">
      <asp:DataList runat="server" ID="repeater" ItemStyle-CssClass="OrderHistory_RowSeparator" RepeatDirection="Horizontal" OnItemDataBound="DataBindings_ItemDataBound">
          <ItemTemplate>
              <asp:Image ID="Image" CssClass="div-img-responsive" runat="server"/>
-             <asp:RadioButtonList ID="radios" runat="server" RepeatDirection="Vertical" ClientIDMode="Static"/>
+             <asp:RadioButtonList ID="radios" runat="server" RepeatDirection="Vertical" RepeatLayout="Flow" ClientIDMode="AutoID"/>
          </ItemTemplate>
      </asp:DataList>
           </div>

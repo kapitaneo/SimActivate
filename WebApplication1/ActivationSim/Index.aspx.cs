@@ -17,14 +17,14 @@ namespace WebApplication1.ActivationSim
             SelectionList list2 = new SelectionList();
 
             Selection selection = new Selection();
-            selection.Name.Add("cde");
+            selection.Name.Add("465cde");
             selection.Name.Add("dawdqw2");
             selection.img = "../Images/Carriers/H2O Wireless_logo627.jpg";
             list.Add(selection);
 
             selection = new Selection();
             selection.Name.Add("cde");
-            selection.Name.Add("dawdqw2");
+            selection.Name.Add("4654646");
             selection.img = "../Images/Carriers/Lyca Mobile_logo489.png";
             list2.Add(selection);
 
