@@ -19,7 +19,7 @@
       <div id="trData">
        <div class="trData-inner">
        <div class="td select">
-         <input  class="radio-plan" type="radio"/>
+           <asp:RadioButton runat="server" ClientIDMode="AutoID" GroupName="sda" />
        </div>
        <div class="td plan-name"><%#DataBinder.Eval(Container.DataItem ,"Name")%></div>
        <div class="td plans"><%#DataBinder.Eval(Container.DataItem ,"Value")%></div>

@@ -68,22 +68,6 @@ namespace WebApplication1.ActivationSim
 
         }
 
-        //protected void CarrierPlanDetailRpt_DataBinding(object sender, EventArgs e)
-        //{
-        //    if (e.Item.ItemType == ListItemType.Item | e.Item.ItemType == ListItemType.AlternatingItem)
-        //    {
-        //        var selections = (SelectionList)e.Item.DataItem;
-        //        var rb = (RadioButtonList)e.Item.FindControl("radios");
-        //        var img = (Image)e.Item.FindControl("Image");
-        //        foreach (Selection item in selections)
-        //        {
-        //            img.ImageUrl = item.img;
-        //            foreach (var item2 in item.Name)
-        //                rb.Items.Add(item2);
-        //        }
-        //    }
-        //}
-
         protected void CarrierPlanDetailRpt_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.DataItem != null)

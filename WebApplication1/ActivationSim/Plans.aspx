@@ -1,26 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Plans.aspx.cs" Inherits="WebApplication1.ActivationSim.Plans" %>
 <%@ Register src="~/UserControls/PlansDetail.ascx" Tagname="PlansDetail" Tagprefix="PlDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-<%--    ViewBag.Title = "Choose Plan";
-    var lblSIM = Model.Where(m => m.ControlTypeName == "lblSIM").FirstOrDefault();
-    var lblSIMTitle = Model.Where(m => m.ControlTypeName == "lblSIMTitle").FirstOrDefault();
-    var lblCarrierTitle = Model.Where(m => m.ControlTypeName == "lblCarrierTitle").FirstOrDefault();
-    var lblRatePlanTitle = Model.Where(m => m.ControlTypeName == "lblRatePlanTitle").FirstOrDefault();
-    var lblHidePlan = Model.Where(m => m.ControlTypeName == "lblHidePlan").FirstOrDefault();
-    var lblShowPlan = Model.Where(m => m.ControlTypeName == "lblShowPlan").FirstOrDefault();
-    var lblPlanNameTitle = Model.Where(m => m.ControlTypeName == "lblPlanNameTitle").FirstOrDefault();
-    var lblPlansTitle = Model.Where(m => m.ControlTypeName == "lblPlansTitle").FirstOrDefault();
-    var lblInstantSpiffTitle = Model.Where(m => m.ControlTypeName == "lblInstantSpiffTitle").FirstOrDefault();
-    var lblPinDiscountRateTitle = Model.Where(m => m.ControlTypeName == "lblPinDiscountRateTitle").FirstOrDefault();
-    var lblPinDiscountAmountTitle = Model.Where(m => m.ControlTypeName == "lblPinDiscountAmountTitle").FirstOrDefault();
-    var lblSimCost = Model.Where(m => m.ControlTypeName == "lblSimCost").FirstOrDefault();
-    var lblPaymentRequiredTitle = Model.Where(m => m.ControlTypeName == "lblPaymentRequiredTitle").FirstOrDefault();
-    var btnConfirmPlan = Model.Where(m => m.ControlTypeName == "btnConfirmPlan").FirstOrDefault();
-    var btnChange = Model.Where(m => m.ControlTypeName == "btnChangeTitle").FirstOrDefault();
-}--%>
-
-    
+ 
 <link href="../CSS/tables-responsive.css" rel="stylesheet" type="text/css" />
 
 <div class="container">
