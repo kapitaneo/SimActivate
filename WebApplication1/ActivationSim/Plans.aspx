@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Plans.aspx.cs" Inherits="WebApplication1.ActivationSim.Plans" %>
+<%@ Register src="~/UserControls/PlansDetail.ascx" Tagname="PlansDetail" Tagprefix="PlDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 <%--    ViewBag.Title = "Choose Plan";
@@ -58,33 +59,30 @@
                     </div>
                 </div>
                 <div id="tbodyPlan">
-                    <asp:Repeater runat="server">
+                    <asp:Repeater runat="server" ID="CarrierPlanDetailRpt" OnItemDataBound="CarrierPlanDetailRpt_ItemDataBound">
                         <ItemTemplate>
                             <div class="simDetail" id="simDetail">
                             <div class="td arrow-hider">
-                                <a href="#" onclick="Hide(0);" class="middle hideplan"><div class="arrow arrow-down"></div></a>
+                                <a href="#" onclick="Hide(0)" class="middle hideplan"><div class="arrow arrow-down"></div></a>
                                 <a href="#" onclick="Show(0)" class="middle showplan"><div class="arrow  arrow-right"></div></a>
                             </div>
-                            <div class="td serial"><span name="txtSIM" class="form-control middle" style="border:none" id="txtSim"> SIM </span><input type="hidden" name="Inventory" value="InventoryId" /> </div>
-                            <div class="td carrier"><img src="/Images/Carriers/Image" class="middle col-md-6 col-xs-6 " alt="No Image" /></div>
+                            <div class="td serial"><span name="txtSIM" class="form-control middle" style="border:none" id="txtSim"> <%#Eval("SIM")%> </span><input type="hidden" name="Inventory" value="InventoryId" /> </div>
+                            <div class="td carrier"><img src="/Images/Carriers/<%#Eval("Image")%>" class="middle col-md-6 col-xs-6 " alt="No Image" /></div>
+                                <div class="td rate-plan mobile-hidden">
+                                <a href="#" onclick="Hide()" class="hide plan">Hide a Plan</a>
+                                <a href="#" onclick="Show()" class="show plan">Show a Plan</a>
+                            </div>
                             <div class="td closer-td"><a class="middle" href="#" style="float:left" onclick="Delete(0 , planCartId, IsSession)"><img  class="close-button" src="/Images/cross.jpg"/></a></div>
                         </div>
-                      <div class="td rate-plan mobile-show rate-plan ">
-                                <div class="wrapper">
-                                    <label>Selected Plan : </label>
-                                    <a href="#" onclick="Hide(0)" class="hideplan>Hide a Plan</a>
-                                    <a href="#" onclick="Show(0)" class="showplan">Show a Plan</a>
-                                    <span class="selected-plan planNameMobile">PlanName </span>
-                                </div>
-                            </div>
                         <div id="planInfo" class="planInfoplan">
                             <div colspan="5">
-                                <div class="table table-bordered">
+                                <PlDetails:PlansDetail ID="PlansdetailUC" runat="server"/>
+                                <%--<div class="table table-bordered">
                                     <div class="planInfo-thead">
                                         <div class="planInfo-thead-inner">
                                             <div class="td select"></div>
                                             <div class="td plan-name">Plan Name</div>
-                                            <div class="td plans">Plans)</div>
+                                            <div class="td plans">Plans</div>
                                             <div class="td spiff mobile-hidden">Instant SPIFF</div>
                                             <div class="td residual mobile-hidden">First Month Residual (%)</div>
                                             <div class="td discount mobile-hidden">Refill Discount (%)</div>
@@ -93,9 +91,20 @@
                                         </div>
                                     </div>
                                     <div id="trData">
-
+                                         <div class="trData-inner">
+                                            <div class="td select">
+                                                <input  class="radio-plan" type="radio"/>
+                                            </div>
+                                            <div class="td plan-name"><%#Eval("Name")%></div>
+                                            <div class="td plans"><%#Eval("Value")%></div>
+                                            <div class="td spiff mobile-hidden"><%#Eval("InstantSpiff")%></div>
+                                            <div class="td residual mobile-hidden"><%#Eval("FirstMonthResidual")%></div>
+                                            <div class="td discount mobile-hidden"><%#Eval("RefillDiscount")%></div>
+                                            <div class="td cost mobile-hidden"><%#Eval("SIMCost")%></div>
+                                            <div class="td funding mobile-hidden"><%#Eval("FundingRequired")%></div>
+                                        </div>
                                     </div>
-                                </div>
+                                </div>--%>
                             </div>
                         </div>
                         </ItemTemplate>
