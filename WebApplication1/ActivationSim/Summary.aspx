@@ -1,32 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Summary.aspx.cs" Inherits="WebApplication1.ActivationSim.Summary" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
- <%--   @model AC.Common.CommonView.OrderModel
-@{
-    ViewBag.Title = "Summary";
-
-    var exceedsACHLimit = Session["ExceedsACHLimit"];
-    Session["ExceedsACHLimit"] = false;
-
-    float subTotal = 0;
-    int count = 0;
-
-    var pageCtrl = Model.PageControlList;
-
-    var lblSummaryTitle = pageCtrl.Where(m => m.ControlTypeName == "lblSummaryTitle").FirstOrDefault();
-    var lblSIMTitle = pageCtrl.Where(m => m.ControlTypeName == "lblSIMTitle").FirstOrDefault();
-    var lblCarrierTitle = pageCtrl.Where(m => m.ControlTypeName == "lblCarrierTitle").FirstOrDefault();
-    var lblPlanNameTitle = pageCtrl.Where(m => m.ControlTypeName == "lblPlanNameTitle").FirstOrDefault();
-    var lblPlansTitle = pageCtrl.Where(m => m.ControlTypeName == "lblPlansTitle").FirstOrDefault();
-    var lblInstantSpiffTitle = pageCtrl.Where(m => m.ControlTypeName == "lblInstantSpiffTitle").FirstOrDefault();
-    var lblPinDiscountAmountTitle = pageCtrl.Where(m => m.ControlTypeName == "lblPinDiscountAmountTitle").FirstOrDefault();
-    var lblPinDiscountRate = pageCtrl.Where(m => m.ControlTypeName == "lblPinDiscountRate").FirstOrDefault();
-    var lblPaymentRequiredTitle = pageCtrl.Where(m => m.ControlTypeName == "lblPaymentRequiredTitle").FirstOrDefault();
-    var lblPinDiscountRateTitle = pageCtrl.Where(m => m.ControlTypeName == "lblPinDiscountRateTitle").FirstOrDefault();
-    var btnChangeTitle = pageCtrl.Where(m => m.ControlTypeName == "btnChangeTitle").FirstOrDefault();
-    var btnConfirmTitle = pageCtrl.Where(m => m.ControlTypeName == "btnConfirmTitle").FirstOrDefault();
-    var lblSimCost = pageCtrl.Where(m => m.ControlTypeName == "lblSimCost").FirstOrDefault();
-}--%>
 <link href="../CSS/tables-responsive.css" rel="stylesheet" />
 
 <div runat="server" visible="false" class="modal fade" id="achModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
@@ -75,7 +48,7 @@
                 <asp:Repeater runat="server">
                     <ItemTemplate>
                         <div class="tr">
-                        <div class="mobile-show arrow-container order-@count"><a href="#" onclick="hideShowOrderDetails(@count)"><div class="arrow arrow-right"></div></a></div>
+                        <div class="mobile-show arrow-container order-@count"><a href="#"><div class="arrow arrow-right"></div></a></div>
                         <div class="td serial"><%#Eval("InventoryName")%></div>
                         <div class="td plan-name"><%#Eval("PlanName")%></div>
                         <div class="td plans mobile-hidden"><%#Eval("Plans")%></div>
