@@ -3,7 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <%
     var pageCtrl = Model.PageControlModel;
-
 %>
 
 <script src="../Scripts/ActivationSimScripts/Common.js"></script>
@@ -235,8 +234,6 @@
                 $("#dvCreditCardDetails").show();
             }
         });
-
-
 
 
         function Validation() {
