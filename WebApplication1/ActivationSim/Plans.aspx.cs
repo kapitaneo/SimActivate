@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using WebApplication1.Models;
 using WebApplication1.UserControls;
@@ -107,7 +108,11 @@ namespace WebApplication1.ActivationSim
 
         protected void HideShow_ServerClick(object sender, EventArgs e)
         {
-            CarrierPlanDetailRpt.FindControl("sender");
+            HtmlAnchor divId = (sender as HtmlAnchor);
+            HtmlGenericControl div = divId.NamingContainer.FindControl("planInfo") as HtmlGenericControl;
+
+
+            div.Visible = !div.Visible;
         }
     }
 

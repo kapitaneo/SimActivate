@@ -43,7 +43,7 @@
                             <div class="simDetail" id="simDetail">
                             <div class="td arrow-hider">
                                 <a href="#" onclick="Hide(0)" class="middle hide plan"><div class="arrow arrow-down"></div></a>
-                                <a  href="#" onserverclick="HideShow_ServerClick" class="middle show plan"><div class="arrow arrow-right"></div></a>
+                                <a runat="server" href="#" onserverclick="HideShow_ServerClick" id="HideShow" class="middle show plan"><div class="arrow arrow-right"></div></a>
                             </div>
                             <div class="td serial"><span class="form-control middle" style="border:none" id="txtSim"> <%#Eval("SIM")%> </span><input type="hidden" name="Inventory" value="InventoryId" /> </div>
                             <div class="td carrier"><img src="/Images/Carriers/<%#Eval("Image")%>" class="middle col-md-6 col-xs-6 " alt="No Image" /></div>
