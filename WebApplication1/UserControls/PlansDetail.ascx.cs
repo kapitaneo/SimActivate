@@ -17,5 +17,19 @@ namespace WebApplication1.UserControls
             PlanDeailsRpt.DataSource = model;
             PlanDeailsRpt.DataBind();
         }
+        protected void rptPortfolios_ItemDataBound(object sender,
+                                           RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType
+               != ListItemType.AlternatingItem)
+                return;
+            string uniqueForGroup = e.Item.Parent.UniqueID;
+            RadioButton rdo = (RadioButton)e.Item.FindControl("rdoSelected");
+            rdo.GroupName =  uniqueForGroup;
+            string script =
+               "SetUniqueRadioButton('" + uniqueForGroup + "',this)";
+            rdo.Attributes.Add("onclick", script);
+
+        }
     }
 }

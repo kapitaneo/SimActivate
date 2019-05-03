@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PlansDetail.ascx.cs" Inherits="WebApplication1.UserControls.PlansDetail" %>
 <div class="table table-bordered">
-<asp:Repeater runat="server" ID="PlanDeailsRpt" >
+  <asp:Repeater runat="server" ID="PlanDeailsRpt" OnItemDataBound="rptPortfolios_ItemDataBound">
     <HeaderTemplate>
      <div class="planInfo-thead">
      <div class="planInfo-thead-inner">
@@ -19,7 +19,7 @@
       <div id="trData">
        <div class="trData-inner">
        <div class="td select">
-           <input type="radio" name="radCustomer" value='<%#Eval("Name") %>' />
+           <asp:RadioButton runat="server" ID="rdoSelected"/>
        </div>
        <div class="td plan-name"><%#DataBinder.Eval(Container.DataItem ,"Name")%></div>
        <div class="td plans"><%#DataBinder.Eval(Container.DataItem ,"Value")%></div>
@@ -32,5 +32,19 @@
    </div>
 
     </ItemTemplate>
-</asp:Repeater>
-    </div>
+  </asp:Repeater>
+</div>
+
+<script type="text/javascript">
+    function SetUniqueRadioButton(nameregex, current) {
+        for (i = 0; i < document.forms[0].elements.length; i++) {
+            elm = document.forms[0].elements[i]
+            if (elm.type == 'radio') {
+                if (elm.name.lastIndexOf(nameregex)!=-1) {
+                    elm.checked = false;
+                }
+            }
+        }
+        current.checked = true;
+    }
+</script>
