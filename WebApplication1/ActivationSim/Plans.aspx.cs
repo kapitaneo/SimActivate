@@ -32,6 +32,7 @@ namespace WebApplication1.ActivationSim
 
 
             List<PlanModel> Model = new List<PlanModel>();
+            List<PlanModel> Model2 = new List<PlanModel>();
             PlanModel firest = new PlanModel() {
                 Name = "DarkGray",
                 FirstMonthResidual= "DarkKhaki",
@@ -41,7 +42,7 @@ namespace WebApplication1.ActivationSim
                   RefillDiscount="sadfre",
                    Value="adsd"
             };
-            PlanModel firest1= new PlanModel()
+            PlanModel firest1 = new PlanModel()
             {
                 Name = "DarkGray1",
                 FirstMonthResidual = "DarkKhaki1",
@@ -53,13 +54,38 @@ namespace WebApplication1.ActivationSim
             };
             Model.Add(firest);
             Model.Add(firest1);
-            
+
+            PlanModel firest2 = new PlanModel()
+            {
+                Name = "DarkGray33",
+                FirstMonthResidual = "DarkKhaki",
+                FundingRequired = "Khaki",
+                SIMCost = "asd",
+                InstantSpiff = "asdad",
+                RefillDiscount = "sadfre",
+                Value = "adsd"
+            };
+            PlanModel firest13 = new PlanModel()
+            {
+                Name = "DarkGray124",
+                FirstMonthResidual = "DarkKhaki1",
+                FundingRequired = "Khaki1",
+                SIMCost = "asd1",
+                InstantSpiff = "asdad1",
+                RefillDiscount = "sadfre1",
+                Value = "adsd1"
+            };
+
+            Model2.Add(firest2);
+            Model2.Add(firest13);
             for (int i = 0; i < 2; i++)
             {
                 DataRow dr = dt.NewRow();
                 dr[0] = "White"+i;
                 dr[1] = "Silver" + i;
-                dr[2] = Model;
+                if(i == 0)
+                    dr[2] = Model;
+                else dr[2] = Model2;
                 dt.Rows.Add(dr);
             }
 
@@ -77,6 +103,11 @@ namespace WebApplication1.ActivationSim
 
                 sampleControl.model = selections;
             }
+        }
+
+        protected void HideShow_ServerClick(object sender, EventArgs e)
+        {
+            CarrierPlanDetailRpt.FindControl("sender");
         }
     }
 

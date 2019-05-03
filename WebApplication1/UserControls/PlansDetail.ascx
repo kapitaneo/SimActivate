@@ -2,7 +2,7 @@
 <div class="table table-bordered">
 <asp:Repeater runat="server" ID="PlanDeailsRpt" >
     <HeaderTemplate>
-        <div class="planInfo-thead">
+     <div class="planInfo-thead">
      <div class="planInfo-thead-inner">
        <div class="td select"></div>
        <div class="td plan-name">Plan Name</div>
@@ -19,7 +19,7 @@
       <div id="trData">
        <div class="trData-inner">
        <div class="td select">
-           <asp:RadioButton runat="server" ClientIDMode="AutoID" GroupName="sda" />
+           <input type="radio" name="radCustomer" value='<%#Eval("Name") %>' />
        </div>
        <div class="td plan-name"><%#DataBinder.Eval(Container.DataItem ,"Name")%></div>
        <div class="td plans"><%#DataBinder.Eval(Container.DataItem ,"Value")%></div>

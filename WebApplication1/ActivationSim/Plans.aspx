@@ -10,7 +10,6 @@
             <div class="col-xs-12 col-md-12 alert alert-warning text-center" id="dvMsg" style="display:none">
                 <span id="dvMsgbody"></span>
                 <a href="#" class="close" onclick="hide();" aria-label="close">&times;</a>
-                <center> </center>
             </div>
         </div>
         <div class="row col-xs-8 col-md-8 add-sim-container">
@@ -31,11 +30,10 @@
             <div class="table table-bordered" id="tablePlan">
                 <div class="">
                     <div class="tablePlan-header">
-                        <div class="th arrow-hider"><!--@(lblRatePlanTitle != null ? lblRatePlanTitle.ControlValue : "Rate Plan")--></div>
-                        <div runat="server" id="divserialId" class="th serial"><%--@(lblSIMTitle != null ? lblSIMTitle.ControlValue : --%>SIM/IMEI</div>
+                        <div class="th arrow-hider"></div>
+                        <div runat="server" id="divserialId" class="th serial">SIM/IMEI</div>
                         <div runat="server" id="divcarrierId" class="th carrier">Carrier</div>
                         <div runat="server" id="divrateplanId" class="th rate-plan mobile-hidden">Selected Plan</div>
-                        <%--@*<div class="th rate-plan mobile-hidden">"Rate Plan"</div>*@--%>
                         <div class="th closer-td"></div>
                     </div>
                 </div>
@@ -44,49 +42,19 @@
                         <ItemTemplate>
                             <div class="simDetail" id="simDetail">
                             <div class="td arrow-hider">
-                                <a href="#" onclick="Hide(0)" class="middle hideplan"><div class="arrow arrow-down"></div></a>
-                                <a href="#" onclick="Show(0)" class="middle showplan"><div class="arrow  arrow-right"></div></a>
+                                <a href="#" onclick="Hide(0)" class="middle hide plan"><div class="arrow arrow-down"></div></a>
+                                <a  href="#" onserverclick="HideShow_ServerClick" class="middle show plan"><div class="arrow arrow-right"></div></a>
                             </div>
                             <div class="td serial"><span name="txtSIM" class="form-control middle" style="border:none" id="txtSim"> <%#Eval("SIM")%> </span><input type="hidden" name="Inventory" value="InventoryId" /> </div>
                             <div class="td carrier"><img src="/Images/Carriers/<%#Eval("Image")%>" class="middle col-md-6 col-xs-6 " alt="No Image" /></div>
-                                <div class="td rate-plan mobile-hidden">
-                                <a href="#" onclick="Hide()" class="hide plan">Hide a Plan</a>
-                                <a href="#" onclick="Show()" class="show plan">Show a Plan</a>
+                            <div class="td rate-plan mobile-hidden">
+                                <%--<a href="#" onclick="Hide()" class="hide plan">Hide a Plan</a>
+                                <a href="#" onclick="Show()" class="show plan">Show a Plan</a>--%>
                             </div>
                             <div class="td closer-td"><a class="middle" href="#" style="float:left" onclick="Delete(0 , planCartId, IsSession)"><img  class="close-button" src="/Images/cross.jpg"/></a></div>
                         </div>
-                        <div id="planInfo" class="planInfoplan">
-                            <div colspan="5">
+                        <div runat="server" id="planInfo" class="planInfoplan">
                                 <PlDetails:PlansDetail ID="PlansdetailUC" runat="server"/>
-                                <%--<div class="table table-bordered">
-                                    <div class="planInfo-thead">
-                                        <div class="planInfo-thead-inner">
-                                            <div class="td select"></div>
-                                            <div class="td plan-name">Plan Name</div>
-                                            <div class="td plans">Plans</div>
-                                            <div class="td spiff mobile-hidden">Instant SPIFF</div>
-                                            <div class="td residual mobile-hidden">First Month Residual (%)</div>
-                                            <div class="td discount mobile-hidden">Refill Discount (%)</div>
-                                            <div class="td cost mobile-hidden">SIM Cost</div>
-                                            <div class="td funding mobile-hidden">Funding Required</div>
-                                        </div>
-                                    </div>
-                                    <div id="trData">
-                                         <div class="trData-inner">
-                                            <div class="td select">
-                                                <input  class="radio-plan" type="radio"/>
-                                            </div>
-                                            <div class="td plan-name"><%#Eval("Name")%></div>
-                                            <div class="td plans"><%#Eval("Value")%></div>
-                                            <div class="td spiff mobile-hidden"><%#Eval("InstantSpiff")%></div>
-                                            <div class="td residual mobile-hidden"><%#Eval("FirstMonthResidual")%></div>
-                                            <div class="td discount mobile-hidden"><%#Eval("RefillDiscount")%></div>
-                                            <div class="td cost mobile-hidden"><%#Eval("SIMCost")%></div>
-                                            <div class="td funding mobile-hidden"><%#Eval("FundingRequired")%></div>
-                                        </div>
-                                    </div>
-                                </div>--%>
-                            </div>
                         </div>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -111,6 +79,7 @@
     if ('@Session["OrderId"]' != "") {
         window.history.forward();
     }
+    
 
     $(document).ready(function () {
         CheckQueryString();
@@ -269,60 +238,6 @@
         }
     }
 
-    function ADDSIMDetails(InventoryId, ItemId, SIM, Image, planCartId, IsSession, PlanName = '') {
-
-        $(".trMsg").remove();
-        var acceptableCount;
-        //image = $("#hdn" + carrierServiceGUID).val();
-        acceptableCount = Math.floor(100000000 + Math.random() * 900000000);
-
-        var tableBody = '<div class="simDetail" id="simDetail' + acceptableCount + '" name="simDetail">' +
-                            '<div class="td arrow-hider">' +
-                                '<a href="#" onclick="Hide(' + acceptableCount + ');" class="middle hide' + acceptableCount + ' ' + (simDetail > 0 ? "plan" : "") + '"><div class="arrow arrow-down"></div></a>' +
-                                '<a href="#" onclick="Show(' + acceptableCount + ');" class="middle show' + acceptableCount + ' ' + (simDetail > 0 ? "" : "plan") + '"><div class="arrow  arrow-right"></div></a>' +
-                            '</div>' +
-                            '<div class="td serial"><span name="txtSIM" class="form-control middle" style="border:none" id="txtSim' + acceptableCount + '">' + SIM + '</span><input type="hidden" name="Inventory" value="' + InventoryId + '" /> </div>' +
-                            '<div class="td carrier"><img src="/Images/Carriers/' + Image + '" class="middle col-md-6 col-xs-6 " alt="No Image" /></div>' +
-                            '<div class="td rate-plan mobile-hidden">' +
-                                '<a href="#" onclick="Hide(' + acceptableCount + ');" class="hide' + acceptableCount + ' ' + (simDetail > 0 ? "plan" : "") + '">@(lblHidePlan != null ? lblHidePlan.ControlValue : "Hide a Plan")</a>' +
-                                '<a href="#" onclick="Show(' + acceptableCount + ');" class="show' + acceptableCount + ' ' + (simDetail > 0 ? "" : "plan") + '">@(lblShowPlan != null ? lblShowPlan.ControlValue : "Show a Plan")</a>' +
-                                '<br/> <span class="selected-plan"> ' + PlanName + ' </span> '+
-                            '</div>' +
-                            '<div class="td closer-td"><a class="middle" href="#" style="float:left" onclick="Delete(' + acceptableCount + ',\'' + planCartId + '\',\'' + IsSession + '\')"><img  class="close-button" src="/Images/cross.jpg" /></a></div>' +
-                        '</div>' +
-                      '<div class="td rate-plan mobile-show rate-plan' + acceptableCount + '">' +
-                                '<div class="wrapper">' +
-                                    '<label>Selected Plan : </label>' +
-                                    '<a href="#" onclick="Hide(' + acceptableCount + ');" class="hide' + acceptableCount + ' ' + (simDetail > 0 ? "plan" : "") + '">@(lblHidePlan != null ? lblHidePlan.ControlValue : "Hide a Plan")</a>' +
-                                    '<a href="#" onclick="Show(' + acceptableCount + ');" class="show' + acceptableCount + ' ' + (simDetail > 0 ? "" : "plan") + '">@(lblShowPlan != null ? lblShowPlan.ControlValue : "Show a Plan")</a>' +
-                                    '<span class="selected-plan planNameMobile' + acceptableCount + '"> ' + PlanName + ' </span> '+
-                                '</div>' +
-                            '</div>' +
-                        '<div id="planInfo' + acceptableCount + '" class="planInfo '+ (simDetail > 0 ? "plan" : "") + '">' +
-                            '<div colspan="5">' +
-                                '<div class="table table-bordered">' +
-                                    '<div class="planInfo-thead">' +
-                                        '<div class="planInfo-thead-inner">' +
-                                            '<div class="td select"></div>' +
-                                            '<div class="td plan-name">@(lblPlanNameTitle != null ? lblPlanNameTitle.ControlValue : "Plan Name")</div>' +
-                                            '<div class="td plans">@(lblPlansTitle != null ? lblPlansTitle.ControlValue : "Plans")</div>' +
-                                            '<div class="td spiff mobile-hidden">@(lblInstantSpiffTitle != null ? lblInstantSpiffTitle.ControlValue : "Instant SPIFF")</div>' +
-                                            '<div class="td residual mobile-hidden">@(lblPinDiscountRateTitle != null ? lblPinDiscountRateTitle.ControlValue : "First Month Residual (%)")</div>' +
-                                            '<div class="td discount mobile-hidden">@(lblPinDiscountAmountTitle != null ? lblPinDiscountAmountTitle.ControlValue : "Refill Discount (%)")</div>' +
-                                            '<div class="td cost mobile-hidden">@(lblSimCost != null ? lblSimCost.ControlValue : "SIM Cost")</div>' +
-                                            '<div class="td funding mobile-hidden">@(lblPaymentRequiredTitle != null ? lblPaymentRequiredTitle.ControlValue : "Funding Required")</div>' +
-                                        '</div>' +
-                                    '</div>' +
-                                    '<div id="trData' + acceptableCount + '"></div>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>';
-        $("#tbodyPlan").append(tableBody);
-        simDetail = simDetail + 1;
-
-        SearchClick(acceptableCount, InventoryId, ItemId, PlanName);
-    }
-
     function Delete(num, planCartId, IsSession) {
         if (IsSession != '') {
             $.ajax({
@@ -365,157 +280,6 @@
         }
     }
 
-    function LoadCarriers() {
-        $.ajax({
-            url: serviceUrl + "GetCarriers/" + wsUserGUid,
-            type: "Post",
-            async: false,
-            success: function (response) {
-                if (response.IsSuccess) {
-                    $("#ddlCarrier").append("<option value=''>Select a Carrier</option>");
-                    $.each(response.Data, function (i, item) {
-                        var planData = '<option value="' + item.CarrierServiceGuid + '">' + item.Name + '</option>';
-                        $("#ddlCarrier").append(planData);
-
-                        var ImageBody = '<input type="hidden" value="' + item.Logo + '" id="hdn' + item.CarrierGuid + '">';
-                        $("#dvSIMADD").append(ImageBody);
-                    });
-                }
-                else {
-                    alert("Error: " + response.Message);
-                }
-            },
-            failure: function (response) { }
-
-        });
-    }
-
-    function CheckSIMStatus() {
-        var SIM, CarrierGUID;
-        carrierServiceGUID = $("#ddlCarrier").val();
-        SIM = $("#txtAddSim").val();
-        GetSIMDetails(SIM, carrierServiceGUID, wsUserGUid, '', '');
-    }
-
-    function GetFirstInventory() {
-        var sessionId;
-        sessionId = '@Session.SessionID';
-
-        $.ajax({
-            async: false,
-            cache: false,
-            type: "GET",
-            url: '@Url.Action("GetSelectedSIMDetails", "Search")',
-            data: { sessionId: sessionId },
-            success: function (response) {
-                if (response.length > 0) {
-                    $.each(response, function (i, item) {
-                        ADDSIMDetails(item.InventoryId, item.ItemId, item.InventoryName, item.Image, item.PlanCartId, '', item.PlanName);
-                    });
-                }
-            },
-            failure: function (response) { }
-        });
-    }
-
-    function GetSIMDetails(SIM, carrierServiceGUID, WsUserGUid, PlanCartId, IsSession) {
-        $("#dvMsgbody").empty();
-        var added = 0;
-        var SIMDetails = document.getElementsByName("txtSIM");
-        $.each(SIMDetails, function (i, item) {
-            if (item.textContent === SIM) {
-                added = added + 1;
-            }
-        });
-
-        if (added > 0) {
-            showMessage("SIM/IMEI is already added.", "alert-danger", "alert-warning");
-            return false;
-        }
-
-        if (SIM != undefined, SIM != null && SIM != "") {
-            if (carrierServiceGUID == "") {
-                showMessage("Please select a carrier.", "alert-danger", "alert-warning");
-                return false;
-            }
-
-            var request = {};
-            request.DeviceId = "";
-            request.CarrierServiceGUID = carrierServiceGUID;
-            request.WsUserGUid = WsUserGUid;
-            request.CompanyGUID = "";
-            request.SIM = SIM;
-
-            $.ajax({
-                async: false,
-                cache: false,
-                type: "POST",
-                url: serviceUrl + "GetSIMDetail",
-                data: request,
-                success: function (response) {
-                    if (response.IsSuccess) {
-                        if (response.Data != '') {
-                            var details = response.Data;
-                            if (parseInt(details.Status) == parseInt(@((int)AC.Common.Enums.InventoryStatus.Activated))) {
-                                showMessage("SIM/IMEI is already activated.", "alert-danger", "alert-warning");
-                            }
-                            else if (parseInt(details.Status) == parseInt(@((int)AC.Common.Enums.InventoryStatus.Funded))) {
-                                showMessage("SIM/IMEI is Prefunded.", "alert-danger", "alert-warning");
-                            }
-                            else {
-                                ADDSIMDetails(details.InventoryId, details.InventoryGuid, details.Item, carrierServiceGUID, PlanCartId, IsSession);
-                                $("#txtAddSim").val('');
-                                $("#dvMsg").hide();
-                            }
-                        }
-                        else {
-                            showMessage("SIM/IMEI is invalid.", "alert-danger", "alert-warning");
-                        }
-                    }
-                    else {
-                        showMessage(response.Message, "alert-warning", "alert-danger");
-                    }
-
-                },
-                failure: function (response) { }
-            });
-        }
-        else {
-            showMessage("Please enter SIM/IMEI for activation.", "alert-warning", "alert-danger");
-
-            if ($("#tbodyPlan >tr").length === 0) {
-                var body = "<tr class='trMsg'><td colspan='4'>Please add SIM/IMEI for getting plans</td></tr>";
-                $("#tbodyPlan").append(body);
-            }
-        }
-    }
-
-    function GetInventoriesBySession() {
-        var sessionId;
-        sessionId = '@Session.SessionID';
-
-        $.ajax({
-            async: false,
-            cache: false,
-            type: "GET",
-            url: '@Url.Action("GetPlans", "Search")',
-            data: { sessionId: sessionId },
-            success: function (response) {
-
-                if (response.length > 0) {
-                    $.each(response, function (i, item) {
-                        if (!item.IsAdminAdded) {
-                            ADDSIMDetails(item.InventoryId, item.ItemId, item.InventoryName, item.Image, item.PlanCartId, '', item.PlanName);
-                        }
-                        setTimeout(function () {
-                            $("#PlanId" + item.PlanId + '' + item.InventoryId).attr("checked", "checked");
-                        }, 1000);
-                    });
-                }
-            },
-            failure: function (response) { }
-        });
-    }
 </script>
 
 
