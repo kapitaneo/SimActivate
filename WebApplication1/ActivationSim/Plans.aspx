@@ -42,8 +42,6 @@
                             <ItemTemplate>
                                 <div class="simDetail" id="simDetail">
                                     <div class="td arrow-hider">
-                                        <%--<a href="#" onclick="Hide(0)" class="middle hide plan"><div class="arrow arrow-down"></div></a>--%>
-                                        <%--<a runat="server" href="#" onserverclick="HideShow_ServerClick" id="HideShow" class="middle show plan button-success"><div class="arrow arrow-right"></div></a>--%>
                                         <asp:LinkButton runat="server" CssClass="middle show plan" OnClick="HideShow_ServerClick"><div class="arrow arrow-down"></div></asp:LinkButton>
                                     </div>
                                     <div class="td serial"><span class="form-control middle" style="border: none" id="txtSim"><%#Eval("SIM")%> </span>
@@ -52,8 +50,7 @@
                                     <div class="td carrier">
                                         <img src="/Images/Carriers/<%#Eval("Image")%>" class="middle col-md-6 col-xs-6 " alt="No Image" /></div>
                                     <div class="td rate-plan mobile-hidden">
-                                    <a href="#"  class="hide plan">Hide a Plan</a>
-                                    <a href="#"  class="show plan">Show a Plan</a>
+                                         <asp:LinkButton runat="server" ID="lbInside" CssClass="middle show plan" OnClick="HideShow_ServerClick">Hide a Plan</asp:LinkButton>
                                     </div>
                                     <div class="td closer-td"><a class="middle" href="#" style="float: left" onclick="Delete(0 , planCartId, IsSession)">
                                         <img class="close-button" src="/Images/cross.jpg" /></a></div>

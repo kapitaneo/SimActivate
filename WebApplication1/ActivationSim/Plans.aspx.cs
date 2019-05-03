@@ -112,8 +112,14 @@ namespace WebApplication1.ActivationSim
 
         protected void HideShow_ServerClick(object sender, EventArgs e)
         {
-            var divId = sender as LinkButton;
-            var parent = divId.NamingContainer as Control;
+            var linkButton = sender as LinkButton;
+            if (linkButton.ID == "lbInside")
+            {
+                linkButton.Text = linkButton.Text == "Hide a Plan" ?
+                    "Show a Plan" : linkButton.Text == "Show a Plan" ?
+                    "Hide a Plan" : linkButton.Text;
+            }
+            var parent = linkButton.NamingContainer as Control;
             if (parent == null)
             {
                 return;
