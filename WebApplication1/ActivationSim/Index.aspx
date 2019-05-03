@@ -10,7 +10,7 @@
      <asp:DataList runat="server" ID="repeater" ItemStyle-CssClass="OrderHistory_RowSeparator" RepeatDirection="Horizontal" OnItemDataBound="DataBindings_ItemDataBound">
          <ItemTemplate>
              <asp:Image ID="Image" CssClass="div-img-responsive" runat="server"/>
-             <asp:RadioButtonList ID="radios" runat="server" RepeatDirection="Vertical" RepeatLayout="Flow" ClientIDMode="AutoID"/>
+             <asp:RadioButtonList ID="radios" runat="server" RepeatDirection="Vertical" CssClass="options" RepeatLayout="Flow" ClientIDMode="AutoID"/>
          </ItemTemplate>
      </asp:DataList>
           </div>
@@ -113,4 +113,14 @@
                 </div>
             </div>
         </div>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".options").each(function(){
+           $(this).find("input").each(function(){
+            $(this).attr("name", "topic");
+           });
+        });
+    });
+    </script>
 </asp:Content>

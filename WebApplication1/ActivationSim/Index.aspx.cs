@@ -43,6 +43,7 @@ namespace WebApplication1.ActivationSim
                 var selections = (SelectionList)e.Item.DataItem;
                 var rb = (RadioButtonList)e.Item.FindControl("radios");
                 var img = (Image)e.Item.FindControl("Image");
+                
                 foreach (Selection item in selections)
                 {
                     img.ImageUrl = item.img;
