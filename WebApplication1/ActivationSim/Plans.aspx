@@ -3,7 +3,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
  
 <link href="../CSS/tables-responsive.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+    .displayPanel
+    {
+        display:block;
+    }
 
+    .hidePanel
+    {
+        display:none;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="row  col-xs-12 col-md-6 col-md-offset-3">
@@ -53,9 +63,9 @@
                             </div>
                             <div class="td closer-td"><a class="middle" href="#" style="float:left" onclick="Delete(0 , planCartId, IsSession)"><img  class="close-button" src="/Images/cross.jpg"/></a></div>
                         </div>
-                        <div runat="server" id="planInfo" class="planInfoplan">
-                                <PlDetails:PlansDetail ID="PlansdetailUC" runat="server"/>
-                        </div>
+                            <asp:Panel runat="server" ID="planInfo" CssClass="planInfoplan displayPanel" Visible="true">
+                               <PlDetails:PlansDetail ID="PlansdetailUC" runat="server"/>
+                             </asp:Panel>
                         </ItemTemplate>
                     </asp:Repeater>
 

@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PlansDetail.ascx.cs" Inherits="WebApplication1.UserControls.PlansDetail" %>
 <div class="table table-bordered">
-  <asp:Repeater runat="server" ID="PlanDeailsRpt" OnItemDataBound="rptPortfolios_ItemDataBound">
+  <asp:Repeater runat="server" ID="PlanDeailsRpt" OnItemDataBound="PlanDeailsRpt_ItemDataBound">
     <HeaderTemplate>
      <div class="planInfo-thead">
      <div class="planInfo-thead-inner">

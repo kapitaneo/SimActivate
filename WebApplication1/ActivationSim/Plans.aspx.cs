@@ -109,10 +109,11 @@ namespace WebApplication1.ActivationSim
         protected void HideShow_ServerClick(object sender, EventArgs e)
         {
             HtmlAnchor divId = (sender as HtmlAnchor);
-            HtmlGenericControl div = divId.NamingContainer.FindControl("planInfo") as HtmlGenericControl;
-
-
-            div.Visible = !div.Visible;
+            Control parent = divId.NamingContainer as Control;
+            Panel pan = parent.FindControl("planInfo") as Panel;
+            pan.CssClass = "hidePanel";
+            //parent.Visible = !parent.Visible;
+            //pan.Visible = !pan.Visible;
         }
     }
 

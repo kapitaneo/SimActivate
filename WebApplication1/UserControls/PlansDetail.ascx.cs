@@ -17,8 +17,7 @@ namespace WebApplication1.UserControls
             PlanDeailsRpt.DataSource = model;
             PlanDeailsRpt.DataBind();
         }
-        protected void rptPortfolios_ItemDataBound(object sender,
-                                           RepeaterItemEventArgs e)
+        protected void PlanDeailsRpt_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType
                != ListItemType.AlternatingItem)
