@@ -44,7 +44,7 @@
                                     <div class="td arrow-hider">
                                         <%--<a href="#" onclick="Hide(0)" class="middle hide plan"><div class="arrow arrow-down"></div></a>--%>
                                         <%--<a runat="server" href="#" onserverclick="HideShow_ServerClick" id="HideShow" class="middle show plan button-success"><div class="arrow arrow-right"></div></a>--%>
-                                        <asp:LinkButton runat="server" CssClass="middle show plan" OnClick="HideShow_ServerClick"></asp:LinkButton>
+                                        <asp:LinkButton runat="server" CssClass="middle show plan" OnClick="HideShow_ServerClick"><div class="arrow arrow-down"></div></asp:LinkButton>
                                     </div>
                                     <div class="td serial"><span class="form-control middle" style="border: none" id="txtSim"><%#Eval("SIM")%> </span>
                                         <input type="hidden" name="Inventory" value="InventoryId" />
@@ -78,90 +78,6 @@
     </div>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript">
-
-        $(document).ready(function () {
-            CheckQueryString();
-            LoadCarriers();
-            if (GetQueryStringByParameter("ischange") != "")
-                GetInventoriesBySession();
-            else
-                GetFirstInventory();
-
-
-        });
-        $(".button-success").click(function () {
-            $(this).next(".planInfoplan").slideToggle("slow", function () {
-                // Animation complete.
-            });
-        });
-        var simDetail = 0;
-        function ConfirmPlan() {
-            var inventories = $("input[name='Inventory']");
-            var plansAll = [];
-            var inventoriesAll = [];
-            var choosenPlan = "";
-            var choosenInventories = "";
-
-            inventories.each(function (i, item) {
-                var plans = $("input[name='plan" + item.value + "']");
-                plans.each(function (i, plan) {
-                    if ($(plan).is(":checked")) {
-                        plansAll.push($(plan).val() + "-" + $(plan).attr("planpriceid"));
-                        inventoriesAll.push(item.value);
-                    }
-                });
-            });
-
-            choosenPlan = plansAll.join();
-            choosenInventories = inventoriesAll.join();
-
-            if (choosenPlan == "") {
-                showMessage("Please choose a plan.", "alert-danger", "alert-warning");
-                return false;
-            }
-            else {
-                $.ajax({
-                    async: false,
-                    cache: false,
-                    type: "POST",
-                    url: 'Plans.aspx/Summary',
-                    data: { plans: choosenPlan, inventories: choosenInventories },
-                    success: function (response) {
-
-                    },
-                    failure: function (response) { }
-                });
-            }
-
-            console.log(plans);
-            return false;
-        }
-
-        function Hide(num) {
-            $(".show" + num).removeClass("plan");
-            $("#planInfo" + num).hide();
-            $(".hide" + num).addClass("plan");
-        }
-
-        function Show(num) {
-            $(".hide" + num).removeClass("plan");
-            $("#planInfo" + num).show();
-            $(".show" + num).addClass("plan");
-        }
-
-        function showPlanDetails(num) {
-            $("#planDetail" + num).toggleClass("active");
-            $(".divider-" + num).toggleClass("active");
-        }
-
-
-
-        function CheckQueryString() {
-            var sim = GetQueryStringByParameter("sim");
-            if (sim != null && sim != "") {
-                $("#txtSim1").val(sim);
-            }
-        }
 
         function Delete(num, planCartId, IsSession) {
             if (IsSession != '') {
