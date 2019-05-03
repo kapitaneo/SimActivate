@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,9 +18,12 @@ namespace WebApplication1.ActivationSim
         CarrierModel model = new CarrierModel();
         protected void Page_Load(object sender, EventArgs e)
         {
-            CarrierPlanDetailRpt.DataSource = CreateDataSource();
-            // Bind the data to the control.
-            CarrierPlanDetailRpt.DataBind();
+            if (!IsPostBack)
+            {
+                CarrierPlanDetailRpt.DataSource = CreateDataSource();
+                // Bind the data to the control.
+                CarrierPlanDetailRpt.DataBind();
+            }
         }
 
         public ICollection CreateDataSource()
@@ -108,12 +112,21 @@ namespace WebApplication1.ActivationSim
 
         protected void HideShow_ServerClick(object sender, EventArgs e)
         {
-            HtmlAnchor divId = (sender as HtmlAnchor);
-            Control parent = divId.NamingContainer as Control;
-            Panel pan = parent.FindControl("planInfo") as Panel;
-            pan.CssClass = "hidePanel";
+            var divId = sender as LinkButton;
+            var parent = divId.NamingContainer as Control;
+            if (parent == null)
+            {
+                return;
+            }
+            
+            Panel panel = parent.FindControl("planInfo") as Panel;
+            if (panel == null)
+            {
+                return;
+            }
+            
             //parent.Visible = !parent.Visible;
-            //pan.Visible = !pan.Visible;
+            panel.Visible = !panel.Visible;
         }
     }
 

@@ -14,8 +14,11 @@ namespace WebApplication1.UserControls
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            PlanDeailsRpt.DataSource = model;
-            PlanDeailsRpt.DataBind();
+            if (!IsPostBack)
+            {
+                PlanDeailsRpt.DataSource = model;
+                PlanDeailsRpt.DataBind();
+            }
         }
         protected void PlanDeailsRpt_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
