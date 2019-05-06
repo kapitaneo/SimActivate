@@ -52,7 +52,7 @@
                                     <div class="td rate-plan mobile-hidden">
                                          <asp:LinkButton runat="server" ID="lbInside" CssClass="middle show plan" OnClick="HideShow_ServerClick">Hide a Plan</asp:LinkButton>
                                     </div>
-                                    <div class="td closer-td"><a class="middle" href="#" style="float: left" onclick="Delete(0 , planCartId, IsSession)">
+                                    <div class="td closer-td"><a class="middle" href="#" style="float: left" onclick="Delete()">
                                         <img class="close-button" src="/Images/cross.jpg" /></a></div>
                                 </div>
                                 <asp:Panel runat="server" ID="planInfo" CssClass="planInfoplan" EnableViewState="true">
@@ -73,52 +73,4 @@
             </div>
         </div>
     </div>
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script type="text/javascript">
-
-        function Delete(num, planCartId, IsSession) {
-            if (IsSession != '') {
-                $.ajax({
-                    async: false,
-                    cache: false,
-                    type: "POST",
-                    url: '@Url.Action("DeleteSessionPlan", "Search")',
-                    data: { planCartId: planCartId },
-                    success: function (response) {
-                        if (response == false) {
-                            return false;
-                        }
-                    },
-                    failure: function (response) { }
-                });
-            }
-
-            if (planCartId != '') {
-                $.ajax({
-                    async: false,
-                    cache: false,
-                    type: "POST",
-                    url: '@Url.Action("DeletePlanCart", "Search")',
-                    data: { planCartId: planCartId },
-                    success: function (response) {
-                        if (response == false) {
-                            return false;
-                        }
-                    },
-                    failure: function (response) { }
-                });
-            }
-
-            $("#simDetail" + num).remove();
-            $("#planInfo" + num).remove();
-            $(".rate-plan" + num).remove();
-            if ($("#tbodyPlan >tr").length === 0) {
-                var body = "<tr class='trMsg'><td colspan='4'>Please add SIM/IMEI for getting plans</td></tr>";
-                $("#tbodyPlan").append(body);
-            }
-        }
-
-    </script>
-
-
 </asp:Content>
