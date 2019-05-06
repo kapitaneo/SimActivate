@@ -15,13 +15,11 @@ namespace WebApplication1.ActivationSim
 {
     public partial class Plans : System.Web.UI.Page
     {
-        CarrierModel model = new CarrierModel();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 CarrierPlanDetailRpt.DataSource = CreateDataSource();
-                // Bind the data to the control.
                 CarrierPlanDetailRpt.DataBind();
             }
         }
@@ -131,7 +129,6 @@ namespace WebApplication1.ActivationSim
                 return;
             }
             
-            //parent.Visible = !parent.Visible;
             panel.Visible = !panel.Visible;
         }
     }
