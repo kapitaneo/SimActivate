@@ -197,19 +197,8 @@
                                 "<input type=\"hidden\" id=\"FundingRequired\" value=\""+DataBinder.Eval(Container.DataItem, "FundingRequired")+"\" />"+
                                 "<input type=\"submit\" class=\"btn btn-primary\" value=\"Pay Now\"/>"+
                                 "<input type=\"button\" class=\"btn btn-default\" onclick=\"showService();\" value=\"Back\"/>"
-                         %>
-                        
+                         %>                       
                         </div>
-                    </div>
-                    <div id="dvActivate" style="display:none">
-                        @if (Model.IsVersizonProvider)
-                        {
-                            <div class="row">
-                                <div class="col-md-offset-5  col-xs-7 col-md-7">
-                                    <input type="button" value="Refresh" class="btn btn-sm btn-primary" onclick="CheckStatus('@Model.Item')" />
-                                </div>
-                            </div>
-                     }
                     </div>
             </div>
         </div>
